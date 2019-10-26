@@ -50,6 +50,40 @@ width: 1000px;
 #banner{
     float: left;
 }
+.menubar{
+    width: 1000px;
+    height: 50px;
+    background: gray;
+    color: white;
+}
+
+
+#menu{
+padding: 0;
+margin: 0;
+line-height: 40px;
+background: gray;    
+}
+#menu li{
+list-style: none;
+display: inline;
+    
+}
+
+#menu a {
+text-decoration: none;
+color: white;
+    padding: 8px;
+    margin: 5px;
+    font-size: 18px;
+    font-family:COMIC SANS MS;
+}
+
+#menu a:hover {
+color: orange;
+    font-weight: bolder;
+    text-decoration: underline;
+}
 
 .conntent_wrapper{
     width: 1000px;

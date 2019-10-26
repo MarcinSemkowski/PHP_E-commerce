@@ -112,9 +112,42 @@ color: orange;
 width: 200px;
 height: 800px;
 background: black;
-float: left;
+float: left;   
+}
+
+#sidebar_title{
+    background:  white;
+    color: black;
+    font-size: 22px;
+    font-family: arial;
+    padding: 10px;
+    text-align: center;
+    }
+#cats{
+    text-align: center;
     
 }
+#cats li {
+list-style:  none;
+    margin: 5px;
+}
+
+#cats a {
+    color: white;
+    padding: 8px;   
+    text-align: center;
+    font-size: 10px;
+    font-family:  comic Sans MS;
+    font-size: 20px;
+    
+}
+#cats a:hover{
+    color: orange;
+    font-weight: bolder;
+    text-decoration: underline;
+    
+}
+
 #footer{
     width: 1000px;
     height: 100px;

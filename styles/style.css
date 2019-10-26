@@ -62,7 +62,8 @@ width: 1000px;
 padding: 0;
 margin: 0;
 line-height: 40px;
-background: gray;    
+background: gray;  
+ float: left;
 }
 #menu li{
 list-style: none;
@@ -83,6 +84,13 @@ color: white;
 color: orange;
     font-weight: bolder;
     text-decoration: underline;
+}
+
+#form{
+    float: right;
+    padding-right: 8px;
+    line-height:  40px;
+    
 }
 
 .conntent_wrapper{

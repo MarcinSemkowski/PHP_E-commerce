@@ -74,7 +74,9 @@ include("functions/functions.php");
             </div >
             
             
-        <div id="footer">This is the footer</div>
+        <div id="footer">
+		<h2 style="text-align:center; padding-top:30px;">&copy; This website is creating with www.OnlineTuting.com</h2>
+		</div>
     
     
     

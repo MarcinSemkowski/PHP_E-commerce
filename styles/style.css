@@ -103,7 +103,6 @@ color: orange;
 
 #content_area{
     width: 799px;
-    height: 800px;
     float: right;
     background: pink;
 }
@@ -150,9 +149,13 @@ list-style:  none;
 
 #footer{
     width: 1000px;
-    height: 100px;
+    height: 120px;
+	position: absolute;
+	left: 432px;
+	top: 850px;
     background: gray;
     clear: both;
+	
 }
 
 

@@ -47,7 +47,27 @@ include("includes/db.php");
         
               <tr>
         <td align="center"><b>Product Brand:</b></td>
-            <td><input type="text" name="product_titile" /></td>
+            <td>
+                  <select name="product_brand">
+                   <option>Select Brand</option>             
+                <?php 
+
+                           $get_brands = "select * from brands"; 
+                        $run_brands = mysqli_query($con,$get_brands);
+
+                       while($row_brands=mysqli_fetch_array($run_brands)){
+                       $brand_id = $row_brands['brand_id']; 
+                       $brand_title = $row_brands['brand_title']; 
+
+                        echo "<option value='$brand_id'>$brand_title</option>";
+
+                       }      
+
+                          ?>
+                </select>    
+
+                  
+                  </td>
         </tr>
         
               <tr>

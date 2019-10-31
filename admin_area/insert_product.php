@@ -1,4 +1,7 @@
 <!DOCTYPE>
+<?php
+include("includes/db.php");
+?>
 <html>
 <head>
     
@@ -20,7 +23,26 @@
         
               <tr>
         <td align="center"><b>Product Category:</b></td>
-            <td><input type="text" name="product_titile" /></td>
+            <td>       <select name="product_cat">
+                   <option>Select Category</option>             
+                <?php 
+
+                           $get_cats = "select * from categories"; 
+                        $run_cats = mysqli_query($con,$get_cats);
+
+                       while($row_cats=mysqli_fetch_array($run_cats)){
+                       $cat_id = $row_cats['cat_id']; 
+                       $cat_title = $row_cats['cat_title']; 
+
+                        echo "<option value='$cat_id'>$cat_title</option>";
+
+                       }      
+
+                          ?>
+                </select>    
+
+                </td>
+              
         </tr>
         
               <tr>
@@ -48,7 +70,7 @@
             <td><input type="text" name="product_titile" /></td>
         </tr>
               <tr align="center">
-            <td colspan="7"><input type="submit" name="insert_post" value="Insert Now " /> </td>
+            <td colspan="7"><input type="submit" name="insert_post" value="Insert Product Now " /> </td>
         </tr>
     
         

@@ -72,7 +72,7 @@ include("includes/db.php");
         
               <tr>
         <td align="center"><b>Product Image:</b> </td>
-            <td><input type="text" name="product_titile" /></td>
+            <td><input type="file" name="product_image" /></td>
         </tr>
         
               <tr>
@@ -82,7 +82,7 @@ include("includes/db.php");
         
               <tr>
         <td align="center"><b>Product Description:</b></td>
-            <td><input type="text" name="product_titile" /></td>
+            <td><textarea name="product_desc" cols="20" rows="10" ></textarea></td>
         </tr>
         
               <tr>

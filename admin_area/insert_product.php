@@ -18,7 +18,7 @@ include("includes/db.php");
         </tr>
         <tr>
         <td align="center"><b>Product Title:</b></td>
-            <td><input type="text" name="product_titile" /></td>
+            <td><input type="text" name="product_titile" size="60" /></td>
         </tr>
         
               <tr>
@@ -87,7 +87,7 @@ include("includes/db.php");
         
               <tr>
         <td align="center"><b>Product Keywords:</b></td>
-            <td><input type="text" name="product_titile" /></td>
+            <td><input type="text" name="product_titile" size="50" /></td>
         </tr>
               <tr align="center">
             <td colspan="7"><input type="submit" name="insert_post" value="Insert Product Now " /> </td>

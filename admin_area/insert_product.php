@@ -99,21 +99,17 @@ include("includes/db.php");
     </form>
     </body>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </html>
+
+<?php 
+
+if(isset($_POST['insert_post'])){
+    $product_title = $_POST['product_title'];
+    $product_cat = $_POST['product_cat'];
+    $product_brand = $_POST['product_brand'];
+    $product_price = $_POST['product_price'];
+    $product_desc = $_POST['product_desc'];
+}
+
+?>
+

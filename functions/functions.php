@@ -46,7 +46,7 @@ function getPro(){
     
     global $con;
  
-    $get_prodcts = "SELECT * FROM products order by RAND() LIMIT 0,6";
+    $get_products = "SELECT * FROM products order by RAND() LIMIT 0,4";
     
 $run_products = mysqli_query($con,$get_products);
     
@@ -59,16 +59,20 @@ $run_products = mysqli_query($con,$get_products);
         $pro_price = $row_products['product_price'];
         $pro_desc = $row_products['product_desc'];
         $pro_image = $row_products['product_image']; 
+         echo "
+				<div style='display: inline-block; margin-left:30px; padding:10px;' id='single_product' >
+				
+					<h3>$pro_title</h3>
+					
+					<img src='admin_area/product_images/$pro_image' width='180' height='180' />
+					
+				
+				</div>";
     }
-    
-    
-    echo "<div id='single_product'>
-      <h3>$pro_title</h3>
-      <img src='admin_area/product_images/$pro_image' width='180' height='180'/>
       
     
     
-    </div>";
+   
     
 
 }

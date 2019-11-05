@@ -125,6 +125,51 @@ $run_cat_pro = mysqli_query($con,$get_cat_pro);
     }
     }
 
+
+
+
+ function getBrandPro(){
+    if(isset($_GET['brand'])){
+        $brand_id = $_GET['brand'];
+        
+    global $con;
+ 
+    $get_brand_pro = "SELECT * FROM products WHERE product_brand = '$brand_id'";
+    
+$run_brand_pro = mysqli_query($con,$get_brand_pro);
+ $count_brands = mysqli_num_rows($run_brand_pro);
+        
+        if($count_brands==0){
+            echo "<h2>There is no product in this brand !</h2> ";
+        }
+    
+    
+    while($row_brand_pro= mysqli_fetch_array($run_brand_pro)){
+        $pro_id = $row_brand_pro['product_id'];
+        $pro_cat = $row_brand_pro['product_cat'];
+        $pro_brand = $row_brand_pro['product_brand'];
+        $pro_title = $row_brand_pro['product_title'];
+        $pro_price = $row_brand_pro['product_price'];
+        $pro_desc = $row_brand_pro['product_desc'];
+        $pro_image = $row_brand_pro['product_image']; 
+         echo "
+				<div style='display: inline-block; margin-left:30px; padding:10px;' id='single_product' >
+				
+					<h3>$pro_title</h3>
+					
+					<img style=' border: 2px solid black;' src='admin_area/product_images/$pro_image' width='180' height='180' />
+					<p style= 'text-align: center;'><b> $ $pro_price</b></p>
+                    <a href='details.php?pro_id=$pro_id' style='float:left;'>Details</a>
+                    
+                    <a href='index.php?pro_id=$pro_id'><button style='float:right'>Add to Cart</button></a>
+				
+				</div>";
+    }
+    
+    
+    }
+    }
+
      
     
     

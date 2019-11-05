@@ -25,7 +25,7 @@ include("functions/functions.php");
             
             <div class="menubar">
               <ul id="menu">
-                  <li><a href="#" >Home</a> </li>
+                  <li><a href="index.php" >Home</a> </li>
                    <li><a href="#" >All Products</a> </li>
                    <li><a href="#" >My Account</a> </li>
                    <li><a href="#" >Sign In</a> </li>
@@ -81,15 +81,9 @@ include("functions/functions.php");
             
         <div id="products_box">
             
-            <?php 
-            
-            getPro();
-            
-            ?>
-             <?php 
-                getCatPro();
-                ?>
-            
+            <?php  getPro();?>
+             <?php  getCatPro(); ?>
+            <?php getBrandPro(); ?>
             </div>
         
         </div>

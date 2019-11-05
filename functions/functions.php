@@ -65,9 +65,10 @@ $run_products = mysqli_query($con,$get_products);
 					<h3>$pro_title</h3>
 					
 					<img style=' border: 2px solid black;' src='admin_area/product_images/$pro_image' width='180' height='180' />
-					<p style= 'text-align: center;'><b>$pro_price</b></p>
-                    <a href='details.php' style='float:left;'>Details</a>
-                    <a href='index.php'><button style='float:right'>Add to Cart</button></a>
+					<p style= 'text-align: center;'><b> $ $pro_price</b></p>
+                    <a href='details.php?pro_id=$pro_id' style='float:left;'>Details</a>
+                    
+                    <a href='index.php?pro_id=$pro_id'><button style='float:right'>Add to Cart</button></a>
 				
 				</div>";
     }

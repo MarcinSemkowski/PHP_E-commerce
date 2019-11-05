@@ -156,8 +156,12 @@ list-style:  none;
 }
 
 	
-
-
+#shopping_cart{
+    width: 800px;
+    height: 50px;
+    background: black;
+    color: white;
+}
 
 #footer{
     width: 1000px;
@@ -169,6 +173,7 @@ list-style:  none;
     clear: both;
 	
 }
+
 
 
 

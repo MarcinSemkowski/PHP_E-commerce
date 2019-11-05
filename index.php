@@ -59,6 +59,7 @@ include("functions/functions.php");
                  <div id="sidebar_title">Brands</div>
             <ul id="cats">
              <?php getBrands(); ?>
+               
             </ul>
             
             </div>
@@ -85,6 +86,9 @@ include("functions/functions.php");
             getPro();
             
             ?>
+             <?php 
+                getCatPro();
+                ?>
             
             </div>
         

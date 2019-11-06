@@ -1,6 +1,28 @@
 <?php
 $con = mysqli_connect("localhost","root","","ecommerce");
 
+
+function total_items(){
+    
+      global $con;
+    
+    if(isset($_GET['add_cart'])){
+        $ip = getIP();
+        $get_items = "SELECT * FROM cart WHERE ip_add= '$ip' ";
+        $run_items = mysqli_query($con,$get_items);
+        $count_items = mysqli_num_rows($run_items);
+        } else{
+         $ip = getIP();
+        $get_items = "SELECT * FROM cart WHERE ip_add= '$ip' ";
+        $run_items = mysqli_query($con,$get_items);
+        $count_items = mysqli_num_rows($run_items);
+    }
+    
+    return $count_items;
+}
+
+
+
 function getCats(){
  
     global $con;
@@ -19,6 +41,7 @@ function getCats(){
     
      
 }
+
 
 
 function getBrands(){

@@ -23,7 +23,7 @@ function total_price(){
             $total += $values;
         }
     }
-    return $total;
+     return $total;
 }
 
 

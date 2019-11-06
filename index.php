@@ -72,7 +72,7 @@ include("admin_area/includes/db.php")
              <div id="content_area">
                  <?php cart(); ?>
              <div id="shopping_cart">
-            <span style="float:right">Welcome Guest ! <b style="color:yellow">Shopping Cart -</b>Total Items:     <?php echo  total_items(); ?> Total Price: <?php echo  total_price(); ?> $ <a href="cart.php" style="color:yellow"> Go to Cart ! </a></span>
+            <span style="float:right">Welcome Guest ! <b style="color:yellow">Shopping Cart -</b>Total Items:     <?php echo  total_items(); ?> Total Price: <?php    total_price(); ?> $ <a href="cart.php" style="color:yellow"> Go to Cart ! </a></span>
             
                  </div> 
                

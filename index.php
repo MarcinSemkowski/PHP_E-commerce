@@ -1,6 +1,7 @@
 <!DOCTYPE>
 <?php
 include("functions/functions.php");
+include("admin_area/includes/db.php")
 ?>
 
 
@@ -68,16 +69,15 @@ include("functions/functions.php");
             
             </div>
             
-           
+             <div id="content_area">
+                 <?php cart(); ?>
              <div id="shopping_cart">
             <span style="float:right">Welcome Guest ! <b style="color:yellow">Shopping Cart -</b> Total Items: Total Price: <a href="cart.php" style="color:yellow"> Go to Cart ! </a></span>
-            </div> 
+            
+                 </div> 
                
-            
-        <div id="content_area">
-        
-         
-            
+    
+                 
             
         <div id="products_box">
             

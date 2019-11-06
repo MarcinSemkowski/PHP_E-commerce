@@ -2,6 +2,33 @@
 $con = mysqli_connect("localhost","root","","ecommerce");
 
 
+function total_price(){
+    global $con;
+    
+    $total  = 0;
+    
+    $ip = getIP();
+    $sel_price = "SELECT * FROM cart WHERE ip_add = '$ip'";
+    
+    $run_price = mysqli_query($con,$sel_price);
+
+    while($p_price = mysqli_fetch_array($run_price)){
+        $pro_id = $p_price['p_id'];
+        $pro_price = "SELECT * FROM products WHERE product_id = '$pro_id' ";
+        $pro_query = mysqli_query($con,$pro_price);
+        
+        while($r_pro = mysqli_fetch_array($pro_query)){
+            $price_pro = array($r_pro['product_price']);
+          $values = array_sum($price_pro);
+            $total += $values;
+        }
+    }
+    return $total;
+}
+
+
+
+
 function total_items(){
     
       global $con;

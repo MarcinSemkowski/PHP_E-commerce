@@ -1,5 +1,6 @@
 <!DOCTYPE>
 <?php
+session_start();
 include("functions/functions.php");
 include("admin_area/includes/db.php")
 ?>
@@ -129,7 +130,25 @@ include("admin_area/includes/db.php")
                         <td><?php echo $product_title; ?><br> 
                           <img src="admin_area/product_images/<?php echo $product_image; ?>" width="60" height="60"/>
                           </td>
-                        <td><input type="text" size="3" name="qty" /></td>
+                        <td><input type="text" size="3" name="qty" value="<?php echo $_SESSION['qty'] ?>" /></td>
+                          
+                        <?php
+                           global $con;
+                          if(isset($_POST['update_cart']))
+                            if(isset($_POST['qty'])){
+                              $qty = $_POST['qty'];
+                            
+                                $update_qty = "UPDATE cart set qty = '$qty'";
+                                $run_qty = mysqli_query($con,$update_qty);
+                                
+                                $_SESSION['qty'] = $qty;
+                                
+                                $total_p *= $qty; 
+                            }
+                          ?>
+                          
+                          
+                          
                         <td><?php  echo $single_price." $" ?></td>  
                     </tr>
                 

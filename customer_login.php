@@ -30,7 +30,7 @@
     </table>
     
     
-    <h2 style="float:left padding-right:20px;"  ><a href="customer_regiester.php" style="text-decoration:none;">New ? Regiester Here</a></h2>
+    <h2 style="float:left padding-right:20px;"  ><a href="customer_register.php" style="text-decoration:none;">New ? Regiester Here</a></h2>
     
     
     </form>

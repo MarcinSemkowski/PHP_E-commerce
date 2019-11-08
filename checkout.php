@@ -1,7 +1,8 @@
 <!DOCTYPE>
 <?php
+session_start();
 include("functions/functions.php");
-include("admin_area/includes/db.php")
+include("admin_area/includes/db.php");
 ?>
 
 

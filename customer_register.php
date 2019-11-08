@@ -1,7 +1,9 @@
 <!DOCTYPE>
 <?php
 include("functions/functions.php");
-include("admin_area/includes/db.php")
+include("admin_area/includes/db.php");
+
+
 ?>
 
 
@@ -78,7 +80,7 @@ include("admin_area/includes/db.php")
                
     
                  
-           <form action="customer_regiester.php" method="post" enctype="multipart/form-data">
+           <form  method="post" enctype="multipart/form-data">
                  
                   <table align="center" width="900">
                
@@ -88,27 +90,27 @@ include("admin_area/includes/db.php")
 
                       <tr>
                        <td align="right">Customer Name:</td>
-                          <td><input type="text" name="c_name" /></td>
+                          <td><input type="text" name="c_name" required /></td>
                       </tr>
                       
                        <tr>
                        <td align="right">Customer Email</td>
-                          <td><input type="text" name="c_email" /></td>
+                          <td><input type="text" name="c_email"  required/></td>
                       </tr>
                       
                        <tr>
                        <td align="right">Cutomer Password</td>
-                          <td><input type="password" name="c_pass" /></td>
+                          <td><input type="password" name="c_pass" required /></td>
                       </tr>
                       
                        <tr>
                        <td align="right">Cutomer Image</td>
-                          <td><input type="file" name="c_image" /></td>
+                          <td><input type="file" name="c_image" required /></td>
                       </tr>
                       
                        <tr>
                        <td align="right">Customer Country</td>
-                          <td><select name="c_country">
+                          <td><select name="c_country" required>
                            <option>Select a Country</option>
                               <option>Afganistan</option>
                               <option>India</option>
@@ -165,3 +167,34 @@ include("admin_area/includes/db.php")
     
     
 </html>
+
+<?php 
+
+if(isset($_POST['regiester'])){
+    $ip = getIP();
+ @    $c_name = $_POST['c_name'];
+  @  $c_pass = $_POST['c_pass'];
+   @ $c_pass_hash = password_hash($c_pass, PASSWORD_DEFAULT);
+   @ $c_country = $_POST['c_country'];
+ @    $c_email = $_POST['c_email']; 
+  @  $c_image = $_FILES['c_image']['name'];
+   @ $c_image_tmp = $_FILES['c_image']['tmp_name'];
+    @ $c_city = $_POST['c_city'];
+ @    $c_contact = $_POST['c_contact']; 
+  @  $c_adress = $_POST['c_adress']; 
+    
+    move_uploaded_file($c_image_tmp,"customer/customer_images/$c_image");
+    
+     $insert_c = "INSERT INTO customers (customer_ip,customer_name,customer_email,customer_pass,customer_country,customer_city,customer_contact,customer_address,customer_image) VALUES ('$ip','$c_name','$c_email','$c_pass_hash','$c_country','$c_city','$c_contact','$c_adress','$c_image')";
+    
+    
+    $run_c = mysqli_query($con,$insert_c);
+    
+    if($run_c){
+        echo "<script>alert(' Registration Sucesfull')</script>";
+    }
+    
+}
+
+
+?>

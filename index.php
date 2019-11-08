@@ -1,5 +1,6 @@
 <!DOCTYPE>
 <?php
+session_start();
 include("functions/functions.php");
 include("admin_area/includes/db.php")
 ?>
@@ -72,7 +73,22 @@ include("admin_area/includes/db.php")
              <div id="content_area">
                  <?php cart(); ?>
              <div id="shopping_cart">
-            <span style="float:right">Welcome Guest ! <b style="color:yellow">Shopping Cart -</b>Total Items:     <?php echo  total_items(); ?> Total Price: <?php  echo  total_price(); ?> $ <a href="cart.php" style="color:yellow"> Go to Cart ! </a></span>
+            <span style="float:right">Welcome Guest ! <b style="color:yellow">Shopping Cart -</b>Total Items:     <?php echo  total_items(); ?> Total Price: <?php  echo  total_price(); ?> $ <a href="cart.php" style="color:yellow"> Go to Cart ! </a>
+                 
+                 <?php 
+                if(!isset($_SESSION['customer_email'])){
+                    echo "<a href='checkout.php' style='color:orange'>Login</a>";
+                }else{
+                    echo "<a href='logout.php' style='color:orange'>Logout</a>";
+                }
+                
+                
+                ?>
+                 
+                 
+                 </span>
+                 
+                   
             
                  </div> 
                

@@ -1,9 +1,8 @@
 <!DOCTYPE>
 <?php
+session_start();
 include("functions/functions.php");
 include("admin_area/includes/db.php");
-
-
 ?>
 
 
@@ -173,15 +172,15 @@ include("admin_area/includes/db.php");
 if(isset($_POST['regiester'])){
     $ip = getIP();
  @    $c_name = $_POST['c_name'];
-  @  $c_pass = $_POST['c_pass'];
-   @ $c_pass_hash = password_hash($c_pass, PASSWORD_DEFAULT);
-   @ $c_country = $_POST['c_country'];
+ @  $c_pass = $_POST['c_pass'];  
+ @ $c_pass_hash = password_hash($c_pass, PASSWORD_DEFAULT);
+ @ $c_country = $_POST['c_country'];
  @    $c_email = $_POST['c_email']; 
-  @  $c_image = $_FILES['c_image']['name'];
-   @ $c_image_tmp = $_FILES['c_image']['tmp_name'];
-    @ $c_city = $_POST['c_city'];
- @    $c_contact = $_POST['c_contact']; 
-  @  $c_adress = $_POST['c_adress']; 
+ @  $c_image = $_FILES['c_image']['name'];
+ @ $c_image_tmp = $_FILES['c_image']['tmp_name'];
+ @ $c_city = $_POST['c_city'];
+ @ $c_contact = $_POST['c_contact']; 
+ @ $c_adress = $_POST['c_adress']; 
     
     move_uploaded_file($c_image_tmp,"customer/customer_images/$c_image");
     
@@ -190,9 +189,21 @@ if(isset($_POST['regiester'])){
     
     $run_c = mysqli_query($con,$insert_c);
     
-    if($run_c){
-        echo "<script>alert(' Registration Sucesfull')</script>";
+    $sel_cart = "SELECT * FROM cart WHERE  ip_add='$ip'";
+    $run_cart = mysqli_query($con,$sel_cart);
+    
+    $check_cart = mysqli_num_rows($run_cart);
+    
+    if($check_cart == 0){
+        $_SESSION['customer_email'] = $c_email;
+        echo "<script>alert('Account has been created Sucesfully')</script>";
+        echo "<script>window.open('customer/my_account.php','_self')</script>";
+    }else{
+      $_SESSION['customer_email'] = $c_email;
+        echo "<script>alert('Account has been created Sucesfully')</script>";
+        echo "<script>window.open('checkout.php','_self')</script>";   
     }
+    
     
 }
 

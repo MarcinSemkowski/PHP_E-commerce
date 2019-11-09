@@ -70,7 +70,20 @@ include("functions/functions.php");
             
            
              <div id="shopping_cart">
-            <span style="float:right">Welcome Guest ! <b style="color:yellow">Shopping Cart -</b> Total Items: Total Price: <a href="cart.php" style="yellow"> Go to Cart ! </a></span>
+            <span style="float:right">
+                
+                   <?php 
+                   if(isset($_SESSION['customer_email'])){
+                       echo"<b>Welcome</b> ".$_SESSION['customer_email']." <b style='colr:yellow;'>Your</b>";
+                   }else{
+                        echo "Welcome Guest !";    
+                   }
+                
+                
+                
+                ?> 
+                
+                <b style="color:yellow">Shopping Cart -</b> Total Items: Total Price: <a href="cart.php" style="yellow"> Go to Cart ! </a></span>
             </div> 
                
             

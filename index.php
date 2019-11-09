@@ -73,7 +73,23 @@ include("admin_area/includes/db.php")
              <div id="content_area">
                  <?php cart(); ?>
              <div id="shopping_cart">
-            <span style="float:right">Welcome Guest ! <b style="color:yellow">Shopping Cart -</b>Total Items:     <?php echo  total_items(); ?> Total Price: <?php  echo  total_price(); ?> $ <a href="cart.php" style="color:yellow"> Go to Cart ! </a>
+            <span style="float:right font-size:15px; padding 5px; line-height: 40px;" >
+                
+               <?php 
+                   if(isset($_SESSION['customer_email'])){
+                       echo"<b>Welcome</b> ".$_SESSION['customer_email']." <b style='colr:yellow;'>Your</b>";
+                   }else{
+                        echo "Welcome Guest !";    
+                   }
+                
+                
+                
+                ?> 
+                 
+                
+                
+                
+                <b style="color:yellow">Shopping Cart -</b>Total Items:     <?php echo  total_items(); ?> Total Price: <?php  echo  total_price(); ?> $ <a href="cart.php" style="color:yellow"> Go to Cart ! </a>
                  
                  <?php 
                 if(!isset($_SESSION['customer_email'])){

@@ -52,6 +52,16 @@ include("../admin_area/includes/db.php")
             <div id="sidebar_title">My Account</div>
             <ul id="cats">
 			  
+             <?php 
+               $user =  $_SESSION['customer_email'];
+                $get_img = "SELECT * FROM customers WHERE customer_email='$user' "; 
+                 $run_img = mysqli_query($con,$get_img);
+                 $row_img = mysqli_fetch_assoc($run_img);
+                 $c_image = $row_img['customer_image'];
+                 echo "<img src='customer_images/$c_image' width='150' height='150'/>";
+                ?>   
+                
+                
              <li><a href="my_account.php?my_orders">My Orders</a></li>
                  <li><a href="my_account.php?edit_account">Edit Account</a></li>
                  <li><a href="my_account.php?change_pass">Change Password</a></li>

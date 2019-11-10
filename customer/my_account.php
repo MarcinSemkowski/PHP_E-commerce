@@ -58,6 +58,7 @@ include("../admin_area/includes/db.php")
                  $run_img = mysqli_query($con,$get_img);
                  $row_img = mysqli_fetch_assoc($run_img);
                  $c_image = $row_img['customer_image'];
+                 $c_name = $row_img['customer_name'];
                  echo "<img src='customer_images/$c_image' width='150' height='150'/>";
                 ?>   
                 
@@ -111,7 +112,8 @@ include("../admin_area/includes/db.php")
                  
             
         <div id="products_box">
-            
+            <h2 style="padding:20px;">Welcome:<?php echo $c_name ?></h2>
+            <b>You can see your orders progress by clicking this<a href="my_account.php"?my_orders>link</a></b>
             </div>
         
         </div>

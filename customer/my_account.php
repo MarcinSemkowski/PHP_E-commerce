@@ -112,8 +112,36 @@ include("../admin_area/includes/db.php")
                  
             
         <div id="products_box">
-            <h2 style="padding:20px;">Welcome:<?php echo $c_name ?></h2>
-            <b>You can see your orders progress by clicking this<a href="my_account.php"?my_orders>link</a></b>
+            
+            <?php 
+            if(!isset($_GET['my_orders'])){
+               if(!isset($_GET['edit_account'])){
+                   if(!isset($_GET['change_pass'])){
+                       if(!isset($_GET['delete_account'])){
+                          echo "<h2 style='padding:20px;'>Welcome: $c_name </h2>";
+                           echo " <b>You can see your orders progress by clicking this<a href='my_account.php?my_orders'>link</a> </b>";           
+                       }
+                       
+                   }
+                   
+               }
+               
+                  
+            }
+            
+            ?>
+            
+            <?php
+            
+            if(isset($_GET['my_orders'])){
+                include("my_orders.php");   
+            }
+            if(isset($_GET['edit_account'])){
+                include("edit_account.php");
+            }
+            
+            ?>
+
             </div>
         
         </div>

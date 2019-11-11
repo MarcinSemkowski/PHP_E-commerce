@@ -139,6 +139,9 @@ include("../admin_area/includes/db.php")
             if(isset($_GET['edit_account'])){
                 include("edit_account.php");
             }
+            if(isset($_GET['change_pass'])){
+                include("change_pass.php");
+            }
             
             ?>
 
@@ -161,6 +164,15 @@ include("../admin_area/includes/db.php")
     
     
 </html>
+
+
+
+
+
+
+
+
+
 
 
    <?php 

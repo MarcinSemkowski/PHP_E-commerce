@@ -161,3 +161,45 @@ include("../admin_area/includes/db.php")
     
     
 </html>
+
+
+   <?php 
+
+if(isset($_GET['c_id'])){
+if(isset($_POST['update'])){
+    @ $customer_id = $_GET['c_id'];
+    $ip = getIP();
+ @    $c_name = $_POST['c_name'];
+ @  $c_pass = $_POST['c_pass'];  
+ @ $c_pass_hash = password_hash($c_pass, PASSWORD_DEFAULT);
+ @ $c_country = $_POST['c_country'];
+ @    $c_email = $_POST['c_email']; 
+ @  $c_image = $_FILES['c_image']['name'];
+ @ $c_image_tmp = $_FILES['c_image']['tmp_name'];
+ @ $c_city = $_POST['c_city'];
+ @ $c_contact = $_POST['c_contact']; 
+ @ $c_adress = $_POST['c_adress']; 
+    
+    move_uploaded_file($c_image_tmp,"customer_images/$c_image");
+    
+     $update_c = "UPDATE customers SET customer_name='$c_name',customer_email='$c_email',customer_city='$c_city',customer_contact='$c_contact',customer_address='$c_adress', customer_image='$c_image'  WHERE customer_id='$customer_id' ";
+    
+    $run_c = mysqli_query($con,$update_c);
+    
+    if($run_c){
+        echo "<script>alert('You update your Acount sussesfully !')</script>";
+         echo "<script>window.open('my_account.php','_self')</script>";
+    }
+        else{
+            
+        }
+    }
+    
+    
+    
+}
+
+
+?>
+
+        

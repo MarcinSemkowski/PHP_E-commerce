@@ -61,7 +61,7 @@ include("admin_area/includes/db.php")
                  <div id="sidebar_title">Brands</div>
             <ul id="cats">
              <?php getBrands(); ?>
-               
+              
             </ul>
             
             </div>

@@ -188,7 +188,8 @@ if(isset($_POST['change_password'])){
         $customer_pass = $db_pass['customer_pass'];
         if(password_verify($current_pass,$customer_pass)){
             if($new_pass == $new_again){
-               $change_pass = "UPDATE customers SET customer_pass='$new_pass' WHERE customer_email ='$user' ";
+                $new_pass_hash = password_hash($new_pass,PASSWORD_DEFAULT);
+               $change_pass = "UPDATE customers SET customer_pass='$new_pass_hash' WHERE customer_email ='$user' ";
               $run_change_pass = mysqli_query($con,$change_pass);
                 if($run_change_pass){
                     echo "<script>alert('You Change Your Password !')</script>";

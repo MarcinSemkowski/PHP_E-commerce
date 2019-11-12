@@ -11,7 +11,7 @@ include("includes/db.php");
 <body bgcolor="skyblue">
     <form action="insert_product.php" method="post" enctype="multipart/form-data">
     
-    <table align="center" width="750" border="2" bgcolor="orange">
+    <table align="center" width="800" height="560" border="2" bgcolor="#187eae">
         
         <tr>
         <td colspan="7"><h2>Insert New Post Here</h2> </td>
@@ -126,7 +126,7 @@ if(isset($_POST['insert_post'])){
 		 if($insert_pro){
 		 
 		 echo "<script>alert('Product Has been inserted!')</script>";
-		 echo "<script>window.open('insert_product.php','_self')</script>";
+		 echo "<script>window.open('index.php?insert_product','_self')</script>";
 		 
 		 }
     

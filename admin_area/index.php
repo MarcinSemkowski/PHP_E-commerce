@@ -25,13 +25,22 @@
         <a href="index.php?view_brands">View All Brands </a>
         <a href="index.php?view_orders">View Orders</a>
         <a href="index.php?insert_product">View All Customers</a>
-        <a href="index.php?view_payments">Viewv Payments</a>
+        <a href="index.php?view_payments">View Payments</a>
         <a href="logout.php">Admin Logout</a>
         
         
     
     </div>
     <div id="left">
+    <?php
+        if(isset($_GET['insert_product'])){
+            include("insert_product.php");
+            
+        }
+        
+        
+        ?>
+    
     
     </div>
     

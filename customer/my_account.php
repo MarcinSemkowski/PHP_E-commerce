@@ -142,6 +142,9 @@ include("../admin_area/includes/db.php")
             if(isset($_GET['change_pass'])){
                 include("change_pass.php");
             }
+               if(isset($_GET['delete_account'])){
+                include("delete_account.php");
+            }
             
             ?>
 
@@ -219,6 +222,28 @@ if(isset($_POST['change_password'])){
 
 
 ?>
+
+
+<!-- DELETE ACCOUNT  -->
+
+<?php
+$user = $_SESSION['customer_email'];
+
+if(isset($_POST['yes'])){
+ $delete_customer = "DELETE FROM customers WHERE customer_email= '$user'";
+  $run_customer =  mysqli_query($con,$delete_customer);
+    
+    echo "<script>alert('We are really sorry your account has been deleted !')</script>"
+   echo "<script>window.open('../index.php','_self')</script>";
+}
+
+if(isset($_POST['no'])){
+     echo "<script>alert('oh ! do not joke again')</script>"
+   echo "<script>window.open('my_accont.php','_self')</script>";
+}
+
+?>
+
 
 
 

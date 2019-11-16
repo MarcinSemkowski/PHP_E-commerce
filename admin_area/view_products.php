@@ -18,7 +18,7 @@
     include("includes/db.php");
     $get_pro = "SELECT * FROM products";
     
-    $run_pro mysqli_query($con,$get_pro);
+    $run_pro =  mysqli_query($con,$get_pro);
     
     $i = 0;
     
@@ -40,6 +40,7 @@
     <td><?php echo $i; ?></td>
     <td><?php echo $pro_title; ?></td>
     <td><?php echo $pro_image; ?></td>
+    <td><img src="product_images/<?php echo $pro_image?>" width="60" height="60" /></td>
     <td><?php echo $pro_price; ?></td>    
     <td><a href="index.php?edit_pro">Edit</a></td>
     <td><a href="delete_pro.php">Delete</a></td>    

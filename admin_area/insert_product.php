@@ -111,7 +111,9 @@ $product_title = $_POST['product_title'];
     $product_image_tmp = $_FILES['product_image']['tmp_name'];
     $product->setImageTmp($product_image_tmp); 
 
-       
+    $insertToDatabase->insertProduct($product);
+
+
 
 }
 

@@ -1,8 +1,11 @@
 <!DOCTYPE>
 <?php
 session_start();
-include("functions/functions.php");
-include("admin_area/includes/db.php");
+include("classes/databaseConnection.php");
+
+$database = new databaseConnection();
+
+
 ?>
 
 
@@ -54,13 +57,13 @@ include("admin_area/includes/db.php");
             <div id="sidebar_title">Categories</div>
             <ul id="cats">
 			  
-             <?php getCats();  ?>
+             <?php $database->getCats();  ?>
               
 			</ul>
             
                  <div id="sidebar_title">Brands</div>
             <ul id="cats">
-             <?php getBrands(); ?>
+             <?php $database->getBrands(); ?>
                
             </ul>
             
@@ -86,7 +89,7 @@ include("admin_area/includes/db.php");
                 
                 ?> 
                 
-                <b style="color:yellow">Shopping Cart -</b>Total Items:     <?php echo  total_items(); ?> Total Price: <?php  echo  total_price(); ?> $ <a href="cart.php" style="color:yellow"> Go to Cart ! </a></span>
+                <b style="color:yellow">Shopping Cart -</b>Total Items:     <?php echo $database->total_items(); ?> Total Price: <?php  echo $database->total_price(); ?> $ <a href="cart.php" style="color:yellow"> Go to Cart ! </a></span>
             
                  </div> 
                

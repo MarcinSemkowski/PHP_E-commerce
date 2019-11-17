@@ -1,8 +1,10 @@
 <!DOCTYPE>
 <?php
 session_start();
-include("functions/functions.php");
-include("admin_area/includes/db.php")
+include("classes/DatabaseConnection.php");
+
+$database = new DatabaseConnection(); 
+
 ?>
 
 
@@ -54,13 +56,13 @@ include("admin_area/includes/db.php")
             <div id="sidebar_title">Categories</div>
             <ul id="cats">
 			  
-             <?php getCats();  ?>
+             <?php $database->getCats();  ?>
               
 			</ul>
             
                  <div id="sidebar_title">Brands</div>
             <ul id="cats">
-             <?php getBrands(); ?>
+             <?php $database->getBrands(); ?>
               
             </ul>
             
@@ -71,7 +73,7 @@ include("admin_area/includes/db.php")
             </div>
             
              <div id="content_area">
-                 <?php cart(); ?>
+                 <?php $database->cart(); ?>
              <div id="shopping_cart">
             <span style="float:right font-size:15px; padding 5px; line-height: 40px;" f>
                 
@@ -89,7 +91,7 @@ include("admin_area/includes/db.php")
                 
                 
                 
-                <b style="color:yellow">Shopping Cart -</b>Total Items:     <?php echo  total_items(); ?> Total Price: <?php  echo  total_price(); ?> $ <a href="cart.php" style="color:yellow"> Go to Cart ! </a>
+                <b style="color:yellow">Shopping Cart -</b>Total Items:     <?php echo $database->total_items(); ?> Total Price: <?php  echo  $database->total_price(); ?> $ <a href="cart.php" style="color:yellow"> Go to Cart ! </a>
                  
                  <?php 
                 if(!isset($_SESSION['customer_email'])){
@@ -113,9 +115,9 @@ include("admin_area/includes/db.php")
             
         <div id="products_box">
             
-            <?php  getPro();?>
-             <?php  getCatPro(); ?>
-            <?php getBrandPro(); ?>
+            <?php  $database->getPro();?>
+             <?php $database->getCatPro(); ?>
+            <?php $database->getBrandPro(); ?>
             </div>
         
         </div>

@@ -3,7 +3,7 @@
 session_start();
 include("classes/databaseConnection.php");
 
-$database = new databaseConnection();
+$database = new DatabaseConnection();
 
 
 ?>

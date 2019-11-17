@@ -1,9 +1,9 @@
 <!DOCTYPE>
 <?php
 session_start();
-include("classes/DatabaseConnection.php");
+include("classes/GetFromDatabase.php");
 
-$database = new DatabaseConnection(); 
+$database = new GetFromDatabase(); 
 
 ?>
 

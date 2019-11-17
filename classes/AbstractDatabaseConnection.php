@@ -16,6 +16,8 @@ if(mysqli_connect_errno()){
 
 }
 
+
+
  
 private  function getIP(){
     $ipAdress = $_SERVER['REMOTE_ADDR'];

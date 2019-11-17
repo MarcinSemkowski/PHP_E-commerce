@@ -1,6 +1,7 @@
 <!DOCTYPE>
 <?php
-include("functions/functions.php");
+include("classes/GetFromDatabase.php");
+$getFromDatabase = new GetFromDatabase();
 ?>
 
 
@@ -52,13 +53,13 @@ include("functions/functions.php");
             <div id="sidebar_title">Categories</div>
             <ul id="cats">
 			  
-             <?php getCats();  ?>
+             <?php $getFromDatabase->getCats();  ?>
               
 			</ul>
             
                  <div id="sidebar_title">Brands</div>
             <ul id="cats">
-             <?php getBrands(); ?>
+              <?php $getFromDatabase->getBrands();  ?>
                
             </ul>
             
@@ -81,35 +82,7 @@ include("functions/functions.php");
             
         <div id="products_box">
          <?php 
-            
-              $get_products = "SELECT * FROM products order by RAND() LIMIT 0,6";
-    
-$run_products = mysqli_query($con,$get_products);
-    
-    
-    while($row_products= mysqli_fetch_array($run_products)){
-        $pro_id = $row_products['product_id'];
-        $pro_cat = $row_products['product_cat'];
-        $pro_brand = $row_products['product_brand'];
-        $pro_title = $row_products['product_title'];
-        $pro_price = $row_products['product_price'];
-        $pro_desc = $row_products['product_desc'];
-        $pro_image = $row_products['product_image']; 
-         echo "
-				<div style='display: inline-block; margin-left:30px; padding:10px;' id='single_product' >
-				
-					<h3>$pro_title</h3>
-					
-					<img style=' border: 2px solid black;' src='admin_area/product_images/$pro_image' width='180' height='180' />
-					<p style= 'text-align: center;'><b> $ $pro_price</b></p>
-                    <a href='details.php?pro_id=$pro_id' style='float:left;'>Details</a>
-                    
-                    <a href='index.php?pro_id=$pro_id'><button style='float:right'>Add to Cart</button></a>
-				
-				</div>";
-    }
-    
-            
+          $getFromDatabase->getPro();
             
             ?>
             </div>

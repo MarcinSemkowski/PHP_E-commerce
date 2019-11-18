@@ -3,6 +3,8 @@
 session_start();
 include("functions/functions.php");
 include("admin_area/includes/db.php");
+include("../classes/Customer.php");
+include("../classes/InsertToDatabase.php");
 ?>
 
 
@@ -170,39 +172,42 @@ include("admin_area/includes/db.php");
 <?php 
 
 if(isset($_POST['regiester'])){
-    $ip = getIP();
+
+  $customer = new Customer();
+
  @    $c_name = $_POST['c_name'];
- @  $c_pass = $_POST['c_pass'];  
- @ $c_pass_hash = password_hash($c_pass, PASSWORD_DEFAULT);
+ $customer->setName($c_name);
+
+ 
+ @  $c_pass = $_POST['c_pass'];
+ $customer->setPass($c_pass);  
+
+ 
  @ $c_country = $_POST['c_country'];
- @    $c_email = $_POST['c_email']; 
+ $customer->setCountry($c_country);
+
+ 
+ @$c_email = $_POST['c_email'];
+$costumer->setEmail($c_email); 
+ 
  @  $c_image = $_FILES['c_image']['name'];
+ $customer->setImage($c_image);
+ 
  @ $c_image_tmp = $_FILES['c_image']['tmp_name'];
+ $customer->setImageTmp($c_image_tmp);
+ 
  @ $c_city = $_POST['c_city'];
- @ $c_contact = $_POST['c_contact']; 
+ $customer->setCity($c_city);
+ 
+ @ $c_contact = $_POST['c_contact'];
+ $customer->setContact($c_contact); 
+ 
  @ $c_adress = $_POST['c_adress']; 
+ $customer->setAdress($c_adress);
     
-    move_uploaded_file($c_image_tmp,"customer/customer_images/$c_image");
-    
-     $insert_c = "INSERT INTO customers (customer_ip,customer_name,customer_email,customer_pass,customer_country,customer_city,customer_contact,customer_address,customer_image) VALUES ('$ip','$c_name','$c_email','$c_pass_hash','$c_country','$c_city','$c_contact','$c_adress','$c_image')";
-    
-    
-    $run_c = mysqli_query($con,$insert_c);
-    
-    $sel_cart = "SELECT * FROM cart WHERE  ip_add='$ip'";
-    $run_cart = mysqli_query($con,$sel_cart);
-    
-    $check_cart = mysqli_num_rows($run_cart);
-    
-    if($check_cart == 0){
-        $_SESSION['customer_email'] = $c_email;
-        echo "<script>alert('Account has been created Sucesfully')</script>";
-        echo "<script>window.open('customer/my_account.php','_self')</script>";
-    }else{
-      $_SESSION['customer_email'] = $c_email;
-        echo "<script>alert('Account has been created Sucesfully')</script>";
-        echo "<script>window.open('checkout.php','_self')</script>";   
-    }
+   $insertToDB = new InsertToDatabase();
+
+   $insertToDB->insertCustomer($customer);
     
     
 }

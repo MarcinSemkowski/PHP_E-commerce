@@ -1,6 +1,6 @@
 <!DOCTYPE>
 <?php
-include("classes/GetFromDatabase.php");
+include("classes/includes.php");
 $getFromDatabase = new GetFromDatabase();
 ?>
 

@@ -1,8 +1,9 @@
 <!DOCTYPE>
 <?php
 session_start();
-include("functions/functions.php");
-include("admin_area/includes/db.php")
+include("classes/includes.php");
+
+$getFromDB = new GetFromDatabase(); 
 ?>
 
 
@@ -54,13 +55,13 @@ include("admin_area/includes/db.php")
             <div id="sidebar_title">Categories</div>
             <ul id="cats">
 			  
-             <?php getCats();  ?>
+             <?php $getFromDB->getCats();  ?>
               
 			</ul>
             
                  <div id="sidebar_title">Brands</div>
             <ul id="cats">
-             <?php getBrands(); ?>
+             <?php $getFromDB->getBrands(); ?>
                
             </ul>
             
@@ -71,7 +72,7 @@ include("admin_area/includes/db.php")
             </div>
             
              <div id="content_area">
-                 <?php cart(); ?>
+                 <?php $getFromDB->cart(); ?>
              <div id="shopping_cart">
             <span style="float:right">
                 
@@ -90,7 +91,7 @@ include("admin_area/includes/db.php")
                 
                 
                 
-                <b style="color:yellow">Shopping Cart -</b>Total Items:     <?php echo  total_items(); ?> Total Price: <?php echo  total_price(); ?> $ <a href="index.php" style="color:yellow"> Back to Shop </a>
+                <b style="color:yellow">Shopping Cart -</b>Total Items:     <?php echo $getFromDB->total_items(); ?> Total Price: <?php echo $getFromDB-> total_price(); ?> $ <a href="index.php" style="color:yellow"> Back to Shop </a>
                  
                            <?php 
                 if(!isset($_SESSION['customer_email'])){
@@ -131,7 +132,7 @@ include("admin_area/includes/db.php")
 
                         $total_p  = 0;
 
-                        $ip = getIP();
+                        $ip = $getFromDB->getIP();
                         $sel_price = "SELECT * FROM cart WHERE ip_add = '$ip'";
 
                         $run_price = mysqli_query($con,$sel_price);

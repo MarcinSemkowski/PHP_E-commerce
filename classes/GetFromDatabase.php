@@ -6,6 +6,21 @@ class GetFromDatabase extends AbstractDatabaseConnection{
 
 
 
+
+
+public function getCustomerImg($user){
+               
+                $get_img = "SELECT * FROM customers WHERE customer_email='$user' "; 
+                 $run_img = mysqli_query($this->getCon(),$get_img);
+                 $row_img = mysqli_fetch_assoc($run_img);
+                 $c_image = $row_img['customer_image'];
+                 $c_name = $row_img['customer_name'];
+                 echo "<img src='customer_images/$c_image' width='150' height='150'/>";
+                  
+}
+
+
+
 public function getCats(){
  
     

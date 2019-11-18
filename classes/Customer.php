@@ -17,15 +17,16 @@ private $adress;
 
 
 
- function  __construct(){
- $this->ip  = getIP();
-}
-
 
 
 
 
 //SETERS
+
+public function setIP($ip){
+  $this->ip = $ip;
+}
+
 
 public function setName($name){
   $this->name = $name;
@@ -59,7 +60,7 @@ public function setCity($city){
   $this->city = $city;
 }
 
-public function setContact($conctact){
+public function setContact($contact){
   $this->contact = $contact;
 }
 
@@ -73,7 +74,7 @@ public function setAdress($adress){
 
 //GETERS
 
-public static function getIP(){
+public  function getIP(){
 	return $this->ip;
 } 
 

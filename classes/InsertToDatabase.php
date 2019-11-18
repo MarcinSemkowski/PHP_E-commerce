@@ -35,7 +35,7 @@ public function insertProduct($product){
 
 public function insertCustomer($customer){
 
- move_uploaded_file($customer->getImageTmp(),"customer/customer_images/$c_image");
+ move_uploaded_file($customer->getImageTmp(),"customer/customer_images/".$customer->getImage());
     
      $insert_c = "INSERT INTO customers (customer_ip,customer_name,customer_email,customer_pass,customer_country,customer_city,customer_contact,customer_address,customer_image) VALUES (
      '".$customer->getIP()."','".
@@ -49,7 +49,7 @@ public function insertCustomer($customer){
      $customer->getImage()."')";
     
     
-    $run_c = mysqli_query($this->con,$insert_c);
+    $run_c = mysqli_query($this->getCon(),$insert_c);
     
     $sel_cart = "SELECT * FROM cart WHERE  ip_add='$ip'";
     $run_cart = mysqli_query($con,$sel_cart);

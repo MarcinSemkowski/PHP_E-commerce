@@ -176,6 +176,10 @@ if(isset($_POST['regiester'])){
 
   $customer = new Customer();
 
+  $ip = $getFromDatabase->getIP();
+
+  $customer->setIP($ip);
+
  @    $c_name = $_POST['c_name'];
  $customer->setName($c_name);
 
@@ -189,7 +193,7 @@ if(isset($_POST['regiester'])){
 
  
  @$c_email = $_POST['c_email'];
-$costumer->setEmail($c_email); 
+$customer->setEmail($c_email); 
  
  @  $c_image = $_FILES['c_image']['name'];
  $customer->setImage($c_image);

@@ -1,8 +1,8 @@
 <!DOCTYPE>
 <?php
 session_start();
-include("../functions/functions.php");
-include("../admin_area/includes/db.php")
+include("../classes/includes.php");
+$getFromDatabase = new GetFromDatabase();
 ?>
 
 
@@ -51,17 +51,10 @@ include("../admin_area/includes/db.php")
             
             <div id="sidebar_title">My Account</div>
             <ul id="cats">
-			  
-             <?php 
+			       <?php
                $user =  $_SESSION['customer_email'];
-                $get_img = "SELECT * FROM customers WHERE customer_email='$user' "; 
-                 $run_img = mysqli_query($con,$get_img);
-                 $row_img = mysqli_fetch_assoc($run_img);
-                 $c_image = $row_img['customer_image'];
-                 $c_name = $row_img['customer_name'];
-                 echo "<img src='customer_images/$c_image' width='150' height='150'/>";
-                ?>   
-                
+              $getFromDatabase->getCustomerImage($user);
+                ?>
                 
              <li><a href="my_account.php?my_orders">My Orders</a></li>
                  <li><a href="my_account.php?edit_account">Edit Account</a></li>
@@ -77,7 +70,7 @@ include("../admin_area/includes/db.php")
             </div>
             
              <div id="content_area">
-                 <?php cart(); ?>
+                 <?php $getFromDatabase->cart(); ?>
              <div id="shopping_cart">
             <span style="float:right font-size:15px; padding 5px; line-height: 40px;" >
                 
@@ -118,7 +111,7 @@ include("../admin_area/includes/db.php")
                if(!isset($_GET['edit_account'])){
                    if(!isset($_GET['change_pass'])){
                        if(!isset($_GET['delete_account'])){
-                          echo "<h2 style='padding:20px;'>Welcome: $c_name </h2>";
+                          echo "<h2 style='padding:20px;'>Welcome:  </h2>";
                            echo " <b>You can see your orders progress by clicking this<a href='my_account.php?my_orders'>link</a> </b>";           
                        }
                        
@@ -233,12 +226,12 @@ if(isset($_POST['yes'])){
  $delete_customer = "DELETE FROM customers WHERE customer_email= '$user'";
   $run_customer =  mysqli_query($con,$delete_customer);
     
-    echo "<script>alert('We are really sorry your account has been deleted !')</script>"
+    echo "<script>alert('We are really sorry your account has been deleted !')</script>";
    echo "<script>window.open('../index.php','_self')</script>";
 }
 
 if(isset($_POST['no'])){
-     echo "<script>alert('oh ! do not joke again')</script>"
+     echo "<script>alert('oh ! do not joke again')</script>";
    echo "<script>window.open('my_accont.php','_self')</script>";
 }
 

@@ -48,6 +48,7 @@ public function insertCustomer($customer){
      $customer->getAdress()."','".
      $customer->getImage()."')";
     
+    move_uploaded_file($customer->getImageTmp, "customercustomer_images/".$customer->getImage());
     
     $run_c = mysqli_query($this->getCon(),$insert_c);
     
@@ -57,11 +58,11 @@ public function insertCustomer($customer){
     $check_cart = mysqli_num_rows($run_cart);
     
     if($check_cart == 0){
-        $_SESSION['customer_email'] = $c_email;
+        $_SESSION['customer_email'] = $customer->getEmail();
         echo "<script>alert('Account has been created Sucesfully')</script>";
         echo "<script>window.open('customer/my_account.php','_self')</script>";
     }else{
-      $_SESSION['customer_email'] = $c_email;
+      $_SESSION['customer_email'] = $$customer->getEmail();
         echo "<script>alert('Account has been created Sucesfully')</script>";
         echo "<script>window.open('checkout.php','_self')</script>";   
     }

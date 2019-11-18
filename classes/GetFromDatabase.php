@@ -1,5 +1,5 @@
 <?php 
-include("AbstractDatabaseConnection.php");
+
 class GetFromDatabase extends AbstractDatabaseConnection{
 
 

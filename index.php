@@ -1,7 +1,7 @@
 <!DOCTYPE>
 <?php
 session_start();
-include("classes/GetFromDatabase.php");
+require_once('classes/includes.php');
 
 $database = new GetFromDatabase(); 
 
@@ -32,7 +32,7 @@ $database = new GetFromDatabase();
                   <li><a href="index.php" >Home</a> </li>
                    <li><a href="all_product.php" >All Products</a> </li>
                    <li><a href="customer/my_account.php" >My Account</a> </li>
-                   <li><a href="#" >Sign In</a> </li>
+                   <li><a href="customer_register.php" >Sign In</a> </li>
                    <li><a href="#" >Shopping Cart</a> </li>
                    <li><a href="#" >Contact Us</a> </li>
                 

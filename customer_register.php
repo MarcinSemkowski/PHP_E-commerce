@@ -1,10 +1,11 @@
 <!DOCTYPE>
 <?php
 session_start();
-include("functions/functions.php");
-include("admin_area/includes/db.php");
-include("../classes/Customer.php");
-include("../classes/InsertToDatabase.php");
+
+include_once("classes/includes.php");
+
+ $insertToDB = new InsertToDatabase();
+ $getFromDatabase = new GetFromDatabase();
 ?>
 
 
@@ -56,13 +57,13 @@ include("../classes/InsertToDatabase.php");
             <div id="sidebar_title">Categories</div>
             <ul id="cats">
 			  
-             <?php getCats();  ?>
+             <?php $getFromDatabase->getCats();  ?>
               
 			</ul>
             
                  <div id="sidebar_title">Brands</div>
             <ul id="cats">
-             <?php getBrands(); ?>
+             <?php $getFromDatabase->getBrands(); ?>
                
             </ul>
             
@@ -73,9 +74,9 @@ include("../classes/InsertToDatabase.php");
             </div>
             
              <div id="content_area">
-                 <?php cart(); ?>
+                 <?php $getFromDatabase->cart(); ?>
              <div id="shopping_cart">
-            <span style="float:right">Welcome Guest ! <b style="color:yellow">Shopping Cart -</b>Total Items:     <?php echo  total_items(); ?> Total Price: <?php  echo  total_price(); ?> $ <a href="cart.php" style="color:yellow"> Go to Cart ! </a></span>
+            <span style="float:right">Welcome Guest ! <b style="color:yellow">Shopping Cart -</b>Total Items:     <?php echo  $getFromDatabase->total_items(); ?> Total Price: <?php  echo  $getFromDatabase->total_price(); ?> $ <a href="cart.php" style="color:yellow"> Go to Cart ! </a></span>
             
                  </div> 
                
@@ -205,7 +206,7 @@ $costumer->setEmail($c_email);
  @ $c_adress = $_POST['c_adress']; 
  $customer->setAdress($c_adress);
     
-   $insertToDB = new InsertToDatabase();
+  
 
    $insertToDB->insertCustomer($customer);
     

@@ -1,8 +1,8 @@
 <?php 
-include("AbstractDatabseConnection.php");
+
 include("Customer.php");
 
-class InsertToDatabase extends AbstractDatabseConnection{
+class InsertToDatabase extends AbstractDatabaseConnection{
 
 
 
@@ -19,7 +19,7 @@ public function insertProduct($product){
      $product->getPrice()."','".
      $product->getDesc()."','".
      $product->getImage()."','".
-     $product->getKeywords()."'");
+     $product->getKeywords()."')";
 		 
 		 $insert_pro = mysqli_query($this->getCon(), $insert_product);
 		 
@@ -38,7 +38,7 @@ public function insertCustomer($customer){
  move_uploaded_file($customer->getImageTmp(),"customer/customer_images/$c_image");
     
      $insert_c = "INSERT INTO customers (customer_ip,customer_name,customer_email,customer_pass,customer_country,customer_city,customer_contact,customer_address,customer_image) VALUES (
-     '".Customer::getIP()."','".
+     '".$customer->getIP()."','".
      $customer->getName()."','".
      $customer->getEmail()."','".
      $customer->getPass()."','".

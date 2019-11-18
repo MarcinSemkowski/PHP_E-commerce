@@ -1,23 +1,25 @@
 <?php 
-include("AbstractDatabaseConnection.php");
+
 class Customer{
 
-private static $ip = AbstractDatabaseConnection::getIP();
+private  $ip;
 
 private $name;
 private $pass;
 private $country;
 private $email;
-private $image
+private $image;
 private $imageTmp;
 private $city;
 private $contact;
-private $adress
+private $adress;
 
 
 
 
-
+ function  __construct(){
+ $this->ip  = getIP();
+}
 
 
 

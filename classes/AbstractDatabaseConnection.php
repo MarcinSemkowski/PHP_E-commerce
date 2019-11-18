@@ -19,8 +19,8 @@ if(mysqli_connect_errno()){
 
 
  
-private  function getIP(){
-    $ipAdress = $_SERVER['REMOTE_ADDR'];
+private static  function getIP(){
+   static $ipAdress = $_SERVER['REMOTE_ADDR'];
     if(!empty($_SERVER['HTTP_CLIENT_IP'])){
         $ipAdress = $_SERVER['HTTP_CLIENT_IP'];
     }else if(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
@@ -37,7 +37,7 @@ public function cart(){
     
     
     if(isset($_GET['add_cart'])){
-        $ip = $this->getIP();
+       static $ip = getIP();
         
         $pro_id = $_GET['add_cart'];
         $check_pro = "SELECT * FROM cart WHERE ip_add ='$ip' AND p_id = '$pro_id' ";

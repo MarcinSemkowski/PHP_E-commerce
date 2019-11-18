@@ -1,6 +1,8 @@
 <?php 
-
+include("AbstractDatabaseConnection.php");
 class Customer{
+
+private static $ip = AbstractDatabaseConnection::getIP();
 
 private $name;
 private $pass;
@@ -12,6 +14,16 @@ private $city;
 private $contact;
 private $adress
 
+
+
+
+
+
+
+
+
+
+//SETERS
 
 public function setName($name){
   $this->name = $name;
@@ -54,6 +66,16 @@ public function setAdress($adress){
 }
 
 
+
+
+
+//GETERS
+
+public static function getIP(){
+	return $this->ip;
+} 
+
+
 public function getName(){
 	return $this->name;
 }
@@ -92,6 +114,9 @@ public function getContact(){
 public function getAdress(){
 	return $this->adress;
 }
+
+
+
 
 }
 

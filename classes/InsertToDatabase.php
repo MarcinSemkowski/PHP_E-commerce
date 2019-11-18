@@ -1,5 +1,6 @@
 <?php 
 include("AbstractDatabseConnection.php");
+include("Customer.php");
 
 class InsertToDatabase extends AbstractDatabseConnection{
 
@@ -32,6 +33,46 @@ public function insertProduct($product){
 }
 
 
+public function insertCustomer($customer){
+
+ move_uploaded_file($customer->getImageTmp(),"customer/customer_images/$c_image");
+    
+     $insert_c = "INSERT INTO customers (customer_ip,customer_name,customer_email,customer_pass,customer_country,customer_city,customer_contact,customer_address,customer_image) VALUES (
+     '".Customer::getIP()."','".
+     $customer->getName()."','".
+     $customer->getEmail()."','".
+     $customer->getPass()."','".
+     $customer->getCountry()."','".
+  	  $customer->getCity()."','".
+     $customer->getContact()."','".
+     $customer->getAdress()."','".
+     $customer->getImage()."')";
+    
+    
+    $run_c = mysqli_query($this->con,$insert_c);
+    
+    $sel_cart = "SELECT * FROM cart WHERE  ip_add='$ip'";
+    $run_cart = mysqli_query($con,$sel_cart);
+    
+    $check_cart = mysqli_num_rows($run_cart);
+    
+    if($check_cart == 0){
+        $_SESSION['customer_email'] = $c_email;
+        echo "<script>alert('Account has been created Sucesfully')</script>";
+        echo "<script>window.open('customer/my_account.php','_self')</script>";
+    }else{
+      $_SESSION['customer_email'] = $c_email;
+        echo "<script>alert('Account has been created Sucesfully')</script>";
+        echo "<script>window.open('checkout.php','_self')</script>";   
+    }
+
+}
+
+
+
+
+
+}
 
 
 

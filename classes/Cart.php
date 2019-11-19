@@ -3,7 +3,7 @@
 class Cart extends AbstractDatabaseConnection{
 
 
-
+ private $totalPrice;
 
 
 
@@ -22,15 +22,11 @@ public function getFormCart(){
                     </tr>";
                     
                     
-                     
 
-                    
-                        global $con;
+                        $this->totalPrice  = 0;
 
-                        $total_p  = 0;
-
-                        $ip = $getFromDB->getIP();
-                        $sel_price = "SELECT * FROM cart WHERE ip_add = '$ip'";
+                        $ip = $this->getIP();
+                        $sel_price = "SELECT * FROM cart WHERE ip_add = '".$ip."'";
 
                         $run_price = mysqli_query($con,$sel_price);
 
@@ -49,7 +45,7 @@ public function getFormCart(){
                                 
                                                        
                                 $values = array_sum($price_pro);
-                                $total_p += $values;
+                                $this->totalPrice += $values;
                             
                             
                 
@@ -67,7 +63,7 @@ public function getFormCart(){
                           if(isset($_POST['update_cart']))
                             if(isset($_POST['qty'])){
                             	$qty = $_POST['qty'];
-                              $total_p = $this->qty($qty);
+                              $this->totalPrice = $this->qty($qty);
 
                             }
                           
@@ -142,13 +138,13 @@ public function cart(){
         $ip = $this->getIP();
         
         $pro_id = $_GET['add_cart'];
-        $check_pro = "SELECT * FROM cart WHERE ip_add ='$ip' AND p_id = '$pro_id' ";
+        $check_pro = "SELECT * FROM cart WHERE ip_add ='".$ip."' AND p_id = '".$pro_id."' ";
         
         $run_check = mysqli_query($this->con,$check_pro);
         if(mysqli_num_rows($run_check) > 0){
          echo "";    
         } else{
-         $insert_pro = "INSERT INTO cart(p_id,ip_add) VALUES('$pro_id','$ip')";    
+         $insert_pro = "INSERT INTO cart(p_id,ip_add) VALUES('".$pro_id."','".$ip."')";    
         $run_pro = mysqli_query($this->con,$insert_pro);
             echo "<script>window.open('index.php','_self')</script>";
         }

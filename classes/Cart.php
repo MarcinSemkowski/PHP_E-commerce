@@ -9,6 +9,7 @@ class Cart extends AbstractDatabaseConnection{
 
 
 
+
 public function getFormCart(){
 
   
@@ -28,12 +29,12 @@ public function getFormCart(){
                         $ip = $this->getIP();
                         $sel_price = "SELECT * FROM cart WHERE ip_add = '".$ip."'";
 
-                        $run_price = mysqli_query($con,$sel_price);
+                        $run_price = mysqli_query($this->getCon(),$sel_price);
 
                         while($p_price = mysqli_fetch_array($run_price)){
                             $pro_id = $p_price['p_id'];
-                            $pro_price = "SELECT * FROM products WHERE product_id = '$pro_id' ";
-                            $pro_query = mysqli_query($con,$pro_price);
+                            $pro_price = "SELECT * FROM products WHERE product_id = '".$pro_id."' ";
+                            $pro_query = mysqli_query($this->getCon(),$pro_price);
                        
                             while($r_pro = mysqli_fetch_array($pro_query)){
                                 $price_pro = array($r_pro['product_price']);
@@ -52,17 +53,18 @@ public function getFormCart(){
                          
                             
                     echo  " <tr align='center'>
-                        <td><input type='checkbox' name='remove[]'' value='.".echo $pro_id."'' ></td>  
-                        <td>".echo $product_title."<br> 
-                          <img src='admin_area/product_images/".echo $product_image;."' width='60' height='60'/>
+                        <td><input type='checkbox' name='remove[]'' value='".$pro_id."'' ></td>  
+                        <td>". $product_title."<br> 
+                          <img src='admin_area/product_images/".$product_image."' width='60' height='60'/>
                           </td>
-                        <td><input type='text' size='3' name='qty' value='".echo $_SESSION['qty']." /></td>";
+                        <td><input type='text' size='3' name='qty' value= ' ". @ $_SESSION['qty']."' /></td>";
                           
                         
                       
                           if(isset($_POST['update_cart']))
                             if(isset($_POST['qty'])){
                             	$qty = $_POST['qty'];
+                               
                               $this->totalPrice = $this->qty($qty);
 
                             }
@@ -70,7 +72,7 @@ public function getFormCart(){
                           
                           
                           
-                     echo   "<td>".echo $single_price."$"."</td>".  
+                     echo   "<td>".$single_price."$"."</td>".  
                     "</tr>";
                 
                     
@@ -78,9 +80,9 @@ public function getFormCart(){
                         
                     }
                 echo    "<tr align='right'>"
-                    "<td colspan='4'><b>Sub Total:</b></td>"
-                    "<td>".echo  $total_p." $"."</td>"
-                    ."</tr>"
+                ."<td colspan='4'><b>Sub Total:</b></td>"
+                ."<td>".$this->totalPrice." $"."</td>"
+                    ."</tr>";
                     
                   echo  "<td colspan='2'><input type='submit' name='update_cart' value='Update Cart' /></td>
                     <td><input type='submit' name='continue' value='Continue Shopping' ></td>
@@ -97,13 +99,18 @@ public function getFormCart(){
 }
 
 
+
+
+
+
+
 public function removeFromCart(){
 	       $ip = $this->getIP();
             if(isset($_POST['update_cart'])){
                 if(isset($_POST['remove'])){
                 foreach($_POST['remove'] as $remove_id){
                  $delete_product = "DELETE FROM cart WHERE p_id = '$remove_id' AND ip_add = '$ip'  ";     
-                 $run_delete = mysqli_query($con,$delete_product);
+                 $run_delete = mysqli_query($this->getCon(),$delete_product);
                     if($run_delete){
                         echo "<script>window.open('cart.php','_self')</script>";
                         
@@ -120,43 +127,101 @@ private function qty($qty){
     
                             
 $update_qty = "UPDATE cart set qty = '$qty'";
-$run_qty = mysqli_query($this->con,$update_qty);
+$run_qty = mysqli_query($this->getCon(),$update_qty);
  $_SESSION['qty'] = $qty;
                                 
-return $total_p * $qty; 
+return   $this->totalPrice * $qty; 
 }
 
 
 
 
 
-public function cart(){
+public function getCart($pro_id){
 
     
     
-    if(isset($_GET['add_cart'])){
+   
         $ip = $this->getIP();
         
-        $pro_id = $_GET['add_cart'];
+       
         $check_pro = "SELECT * FROM cart WHERE ip_add ='".$ip."' AND p_id = '".$pro_id."' ";
         
-        $run_check = mysqli_query($this->con,$check_pro);
+        $run_check = mysqli_query($this->getCon(),$check_pro);
         if(mysqli_num_rows($run_check) > 0){
          echo "";    
         } else{
          $insert_pro = "INSERT INTO cart(p_id,ip_add) VALUES('".$pro_id."','".$ip."')";    
-        $run_pro = mysqli_query($this->con,$insert_pro);
+        $run_pro = mysqli_query($this->getCon(),$insert_pro);
             echo "<script>window.open('index.php','_self')</script>";
         }
     }
+
+
+
+
+
+
+
+
+
+public  function totalPrice(){
+    
+    
+    $total  = 0;
+    
+    $ip = $this->getIP();
+    $sel_price = "SELECT * FROM cart WHERE ip_add = '".$ip."'";
+    
+    $run_price = mysqli_query($this->getCon(),$sel_price);
+
+    while($p_price = mysqli_fetch_array($run_price)){
+        $pro_id = $p_price['p_id'];
+        $pro_price = "SELECT * FROM products WHERE product_id = '$pro_id' ";
+        $pro_query = mysqli_query($this->getCon(),$pro_price);
+        
+        while($r_pro = mysqli_fetch_array($pro_query)){
+            $price_pro = array($r_pro['product_price']);
+          $values = array_sum($price_pro);
+            $total += $values;
+        }
+    }
+     return $total;
 }
 
 
 
+public  function totalItems(){
+    
+      $itemNum =0;
+    
+    if(isset($_GET['add_cart'])){
+        $ip =  $this->getIP();
+        $get_items = "SELECT * FROM cart WHERE ip_add= '$ip' ";
+        $run_items = mysqli_query($this->getCon(),$get_items);
+          
+          while ($fetchCart = mysqli_fetch_array($run_items)) {
+             
+             $qtyCartItem = $fetchCart['qty'];
+            $itemNum += $qtyCarItem;
+          }
 
+        } else{
+         $ip = $this->getIP();
+        $get_items = "SELECT * FROM cart WHERE ip_add= '".$ip."' ";
+        $run_items = mysqli_query($this->getCon(),$get_items);
+        $count_items = mysqli_num_rows($run_items);
+        
+          while ($fetchCart =  mysqli_fetch_array($run_items)) {
+             
+             $qtyCartItem = $fetchCart['qty'];
+            $itemNum += $qtyCartItem;
+          }
 
-
-
+    }
+    
+    return $itemNum;
+}
 
 
 

@@ -1,10 +1,12 @@
 <!DOCTYPE>
 <?php
 session_start();
-require_once('classes/includes.php');
-
-$database = new GetFromDatabase(); 
-
+include("classes/AbstractDatabaseConnection.php");
+include('classes/Cart.php');
+include('classes/Categories.php');
+include('classes/Brands.php');
+include('classes/Product.php');
+$cart = new Cart();
 ?>
 
 
@@ -56,13 +58,18 @@ $database = new GetFromDatabase();
             <div id="sidebar_title">Categories</div>
             <ul id="cats">
 			  
-             <?php $database->getCats();  ?>
+             <?php 
+             $category = new Categories();
+             $category->getAllCatsFromDatabase();  
+             ?>
               
 			</ul>
             
                  <div id="sidebar_title">Brands</div>
             <ul id="cats">
-             <?php $database->getBrands(); ?>
+             <?php 
+              $brands = new Brands();
+             $brands->getAllBrandsFromDatabase(); ?>
               
             </ul>
             
@@ -73,7 +80,12 @@ $database = new GetFromDatabase();
             </div>
             
              <div id="content_area">
-                 <?php $database->cart(); ?>
+                 <?php
+                    if(isset($_GET['add_cart'])){
+                     $id = $_GET['add_cart']; 
+                  $cart->getCart($catId); 
+                   }
+                  ?>
              <div id="shopping_cart">
             <span style="float:right font-size:15px; padding 5px; line-height: 40px;" f>
                 
@@ -91,7 +103,7 @@ $database = new GetFromDatabase();
                 
                 
                 
-                <b style="color:yellow">Shopping Cart -</b>Total Items:     <?php echo $database->total_items(); ?> Total Price: <?php  echo  $database->total_price(); ?> $ <a href="cart.php" style="color:yellow"> Go to Cart ! </a>
+                <b style="color:yellow">Shopping Cart -</b>Total Items:     <?php echo $cart->totalItems(); ?> Total Price: <?php  echo  $cart->totalPrice(); ?> $ <a href="cart.php" style="color:yellow"> Go to Cart ! </a>
                  
                  <?php 
                 if(!isset($_SESSION['customer_email'])){
@@ -115,9 +127,20 @@ $database = new GetFromDatabase();
             
         <div id="products_box">
             
-            <?php  $database->getPro();?>
-             <?php $database->getCatPro(); ?>
-            <?php $database->getBrandPro(); ?>
+
+            <?php  
+             $product =  new Product();
+            $product->getAllProductFromDatabase();
+              
+             if(isset($_GET['cat'])){
+                 $cat_id = $_GET['cat'];
+              $product->getProductByCategoryFromDatabase($cat_id);
+             } 
+             if(isset($_GET['brand'])){
+                $brand_id = $_GET['brand'];
+             $product->getProductByBrandFromDatabase($brand_id);
+             } 
+            ?>
             </div>
         
         </div>

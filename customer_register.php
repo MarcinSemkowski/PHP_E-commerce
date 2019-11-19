@@ -4,8 +4,7 @@ session_start();
 
 include_once("classes/includes.php");
 
- $insertToDB = new InsertToDatabase();
- $getFromDatabase = new GetFromDatabase();
+$cart = new Cart();
 ?>
 
 
@@ -57,13 +56,20 @@ include_once("classes/includes.php");
             <div id="sidebar_title">Categories</div>
             <ul id="cats">
 			  
-             <?php $getFromDatabase->getCats();  ?>
+             <?php
+             $categories = new Categories();
+
+             $categories->getAllCatsFromDatabase();; 
+              ?>
               
 			</ul>
             
                  <div id="sidebar_title">Brands</div>
             <ul id="cats">
-             <?php $getFromDatabase->getBrands(); ?>
+             <?php
+              $brands = new Brands();
+              $getFromDatabase->getAllBrandsFromDatabase(); 
+              ?>
                
             </ul>
             
@@ -74,9 +80,9 @@ include_once("classes/includes.php");
             </div>
             
              <div id="content_area">
-                 <?php $getFromDatabase->cart(); ?>
+                 <?php $cart->getCart(); ?>
              <div id="shopping_cart">
-            <span style="float:right">Welcome Guest ! <b style="color:yellow">Shopping Cart -</b>Total Items:     <?php echo  $getFromDatabase->total_items(); ?> Total Price: <?php  echo  $getFromDatabase->total_price(); ?> $ <a href="cart.php" style="color:yellow"> Go to Cart ! </a></span>
+            <span style="float:right">Welcome Guest ! <b style="color:yellow">Shopping Cart -</b>Total Items:     <?php echo  $cart->totalItems(); ?> Total Price: <?php  echo  $cart->totalPrice(); ?> $ <a href="cart.php" style="color:yellow"> Go to Cart ! </a></span>
             
                  </div> 
                

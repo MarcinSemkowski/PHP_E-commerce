@@ -1,7 +1,9 @@
 <!DOCTYPE>
 <?php
 include("classes/includes.php");
-$getFromDatabase = new GetFromDatabase();
+
+
+
 ?>
 
 
@@ -52,14 +54,15 @@ $getFromDatabase = new GetFromDatabase();
             
             <div id="sidebar_title">Categories</div>
             <ul id="cats">
-			  
-             <?php $getFromDatabase->getCats();  ?>
+			   $categories = new Categories(); 
+             <?php $categories->getAllCatsFromDatabase();  ?>
               
 			</ul>
             
                  <div id="sidebar_title">Brands</div>
             <ul id="cats">
-              <?php $getFromDatabase->getBrands();  ?>
+                $brands = new Brands();
+              <?php $getFromDatabase->getAllBrandsFromDatabase();  ?>
                
             </ul>
             
@@ -82,7 +85,8 @@ $getFromDatabase = new GetFromDatabase();
             
         <div id="products_box">
          <?php 
-          $getFromDatabase->getPro();
+         $product = new Product();
+          $produuct->getAllProductFromDatabase();
             
             ?>
             </div>

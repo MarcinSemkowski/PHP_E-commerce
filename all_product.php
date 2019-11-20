@@ -1,7 +1,10 @@
 <!DOCTYPE>
 <?php
-include("classes/includes.php");
-
+include("classes/AbstractDatabaseConnection.php");  
+include("classes/Categories.php");
+include("classes/Brands.php");
+include("classes/Product.php");
+include("classes/Cart.php");
 
 
 ?>
@@ -54,15 +57,19 @@ include("classes/includes.php");
             
             <div id="sidebar_title">Categories</div>
             <ul id="cats">
-			   $categories = new Categories(); 
-             <?php $categories->getAllCatsFromDatabase();  ?>
+			 
+              <?php
+               $categories = new Categories(); 
+              $categories->getAllCatsFromDatabase();  ?>
               
 			</ul>
             
                  <div id="sidebar_title">Brands</div>
             <ul id="cats">
+              
+               <?php
                 $brands = new Brands();
-              <?php $getFromDatabase->getAllBrandsFromDatabase();  ?>
+               $brands->getAllBrandsFromDatabase();  ?>
                
             </ul>
             
@@ -86,7 +93,7 @@ include("classes/includes.php");
         <div id="products_box">
          <?php 
          $product = new Product();
-          $produuct->getAllProductFromDatabase();
+          $product->getAllProductFromDatabase();
             
             ?>
             </div>

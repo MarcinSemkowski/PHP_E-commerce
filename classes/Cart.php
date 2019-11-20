@@ -65,7 +65,7 @@ public function getFormCart(){
                             if(isset($_POST['qty'])){
                             	$qty = $_POST['qty'];
                                
-                              $this->totalPrice = $this->qty($qty);
+                             
 
                             }
                           
@@ -81,7 +81,7 @@ public function getFormCart(){
                     }
                 echo    "<tr align='right'>"
                 ."<td colspan='4'><b>Sub Total:</b></td>"
-                ."<td>".$this->totalPrice." $"."</td>"
+                ."<td>".$this->totalPrice()." $"."</td>"
                     ."</tr>";
                     
                   echo  "<td colspan='2'><input type='submit' name='update_cart' value='Update Cart' /></td>
@@ -175,17 +175,19 @@ public  function totalPrice(){
     
     $run_price = mysqli_query($this->getCon(),$sel_price);
 
-    while($p_price = mysqli_fetch_array($run_price)){
+    while($p_price = mysqli_fetch_assoc($run_price)){
         $pro_id = $p_price['p_id'];
-        $pro_price = "SELECT * FROM products WHERE product_id = '$pro_id' ";
+        $pro_qty = $p_price['qty'];
+        $pro_price = "SELECT * FROM products WHERE product_id = '".$pro_id."' ";
         $pro_query = mysqli_query($this->getCon(),$pro_price);
         
-        while($r_pro = mysqli_fetch_array($pro_query)){
-            $price_pro = array($r_pro['product_price']);
-          $values = array_sum($price_pro);
-            $total += $values;
+        while($r_pro = mysqli_fetch_assoc($pro_query)){
+           $productPrice = $r_pro['product_price'];
+           
+            $total += $productPrice * $pro_qty;
         }
     }
+
      return $total;
 }
 

@@ -218,6 +218,50 @@ public function loginCustomer($c_email,$c_pass){
 
 
 
+publicm function editPassword($user,$current_pass,$new_pass,$new_again){
+
+
+
+    
+   $sel_pass = "SELECT * FROM customers WHERE customer_email ='$user' ";
+    
+    $run_pass = mysqli_query($this->getCon(),$sel_pass);
+    
+    if($run_pass){
+        $db_pass = mysqli_fetch_assoc($run_pass);
+        $customer_pass = $db_pass['customer_pass'];
+        if(password_verify($current_pass,$customer_pass)){
+            if($new_pass == $new_again){
+                $new_pass_hash = password_hash($new_pass,PASSWORD_DEFAULT);
+               $change_pass = "UPDATE customers SET customer_pass='$new_pass_hash' WHERE customer_email ='$user' ";
+              $run_change_pass = mysqli_query($this->getCon(),$change_pass);
+                if($run_change_pass){
+                    echo "<script>alert('You Change Your Password !')</script>";
+                    echo "<script>window.open('my_account.php','_self')</script>"; 
+                }else{
+                    echo "<script>alert('Sonething Wrong  !')</script>";
+                    exit();
+                }
+            }else{
+                 echo "<script>alert('New Password 1 and new Password 2 not the same  !')</script>";
+              exit();
+            }
+        }else{
+             echo "<script>alert('Current Password is Wrong !')</script>";
+          exit();
+        }
+        
+        
+        
+        
+    }
+    
+    
+}
+
+
+
+
 
 
 

@@ -7,6 +7,8 @@ include("classes/Category.php");
 include("classes/Brand.php");
 include("classes/Product.php");
 include("classes/Cart.php");
+include("classes/Customer.php");
+
 
 $cart = new Cart();
 ?>
@@ -191,7 +193,7 @@ if(isset($_POST['regiester'])){
 
   $customer = new Customer();
 
-  $ip = $getFromDatabase->getIP();
+  $ip = $customer->getIP();
 
   $customer->setIP($ip);
 

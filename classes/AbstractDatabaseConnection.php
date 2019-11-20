@@ -19,7 +19,7 @@ if(mysqli_connect_errno()){
 
 
  
-protected    function getIP(){
+public  function getIP(){
     $ipAdress = $_SERVER['REMOTE_ADDR'];
     if(!empty($_SERVER['HTTP_CLIENT_IP'])){
         $ipAdress = $_SERVER['HTTP_CLIENT_IP'];

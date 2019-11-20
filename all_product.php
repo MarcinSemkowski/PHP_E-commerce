@@ -5,6 +5,7 @@ include("classes/Category.php");
 include("classes/Brand.php");
 include("classes/Product.php");
 include("classes/Cart.php");
+include("classes/Customer.php");
 
 
 ?>
@@ -32,10 +33,9 @@ include("classes/Cart.php");
             <div class="menubar">
               <ul id="menu">
                   <li><a href="index.php" >Home</a> </li>
-                   <li><a href="#" >All Products</a> </li>
-                   <li><a href="#" >My Account</a> </li>
-                   <li><a href="#" >Sign In</a> </li>
-                   <li><a href="#" >Shopping Cart</a> </li>
+                   <li><a href="customer/my_account.php" >My Account</a> </li>
+                   <li><a href="customer/customer_register.php" >Sign In</a> </li>
+                   <li><a href="cart.php" >Shopping Cart</a> </li>
                    <li><a href="#" >Contact Us</a> </li>
                 
                 

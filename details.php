@@ -1,6 +1,11 @@
 <!DOCTYPE>
 <?php
-include("functions/functions.php");
+include("classes/AbstractDatabaseConnection.php");  
+include("classes/Category.php");
+include("classes/Brand.php");
+include("classes/Product.php");
+
+
 ?>
 
 
@@ -52,13 +57,17 @@ include("functions/functions.php");
             <div id="sidebar_title">Categories</div>
             <ul id="cats">
 			  
-             <?php getCats();  ?>
+             <?php 
+              $categories = new Category();
+               $categories->getAllCatsFromDatabase();   ?>
               
 			</ul>
             
                  <div id="sidebar_title">Brands</div>
             <ul id="cats">
-             <?php getBrands(); ?>
+             <?php
+              $brands = new Brand();
+              $brands->getAllBrandsFromDatabase(); ?>
             </ul>
             
             </div>
@@ -81,36 +90,11 @@ include("functions/functions.php");
         <div id="products_box">
             
             <?php 
-            if(isset($_GET['pro_id'])){
-                $product_id = $_GET['pro_id'];
-            
-            $get_products = "SELECT * FROM products WHERE product_id = '$product_id' ";
-    
-$run_products = mysqli_query($con,$get_products);
-    
-    
-    while($row_products= mysqli_fetch_array($run_products)){
-        $pro_id = $row_products['product_id'];
-        $pro_title = $row_products['product_title'];
-        $pro_price = $row_products['product_price'];
-        $pro_desc = $row_products['product_desc'];
-        $pro_image = $row_products['product_image']; 
-         echo "
-				<div style='display: inline-block; margin-left:30px; padding:10px;' id='single_product' >
-				
-					<h3>$pro_title</h3>
-					
-					<img style=' border: 2px solid black;' src='admin_area/product_images/$pro_image' width='400' height='300' />
-					<p style= 'text-align: center;'><b> $ $pro_price</b></p>
-                    <a href='index.php' style='float:left;'>Go Back</a>
-                    </br>
-                    <p>$pro_desc</p>
-                    <a href='index.php?pro_id=$pro_id'><button style='float:right'>Add to Cart</button></a>
-				
-				</div>";
-    }
+          if(isset($_GET['pro_id'])){
+                $productId = $_GET['pro_id'];
+               $product  = new Product();
+               $product->productDescription($productId);
             }
-            
             ?>
             
             </div>

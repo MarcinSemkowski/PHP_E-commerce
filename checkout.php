@@ -1,10 +1,14 @@
 <!DOCTYPE>
 <?php
 session_start();
-include("classes/AbstractDatabaseConnection.php");
+include("classes/AbstractDatabaseConnection.php");  
+include("classes/Category.php");
+include("classes/Brand.php");
+include("classes/Product.php");
+include("classes/Cart.php");
 
-$database = new DatabaseConnection();
 
+$cart = new Cart();
 
 ?>
 
@@ -57,13 +61,21 @@ $database = new DatabaseConnection();
             <div id="sidebar_title">Categories</div>
             <ul id="cats">
 			  
-             <?php $database->getCats();  ?>
+             <?php
+              $categories = new Category();
+              $categories->getAllCatsFromDatabase(); 
+                ?>
               
 			</ul>
             
                  <div id="sidebar_title">Brands</div>
             <ul id="cats">
-             <?php $database->getBrands(); ?>
+             <?php
+                $brands = new Brand();
+              $brands->getAllBrandsFromDatabase();             
+
+
+              ?>
                
             </ul>
             
@@ -74,7 +86,12 @@ $database = new DatabaseConnection();
             </div>
             
              <div id="content_area">
-                 <?php cart(); ?>
+                 <?php 
+                    if(isset($_GET['add_cart'])){
+                     $id = $_GET['add_cart']; 
+                  $cart->getCart($Id); 
+                    }
+                  ?>
              <div id="shopping_cart">
             <span style="float:right">
                 
@@ -89,7 +106,7 @@ $database = new DatabaseConnection();
                 
                 ?> 
                 
-                <b style="color:yellow">Shopping Cart -</b>Total Items:     <?php echo $database->total_items(); ?> Total Price: <?php  echo $database->total_price(); ?> $ <a href="cart.php" style="color:yellow"> Go to Cart ! </a></span>
+                <b style="color:yellow">Shopping Cart -</b>Total Items:     <?php echo $cart->totalItems(); ?> Total Price: <?php  echo $cart->totalPrice(); ?> $ <a href="cart.php" style="color:yellow"> Go to Cart ! </a></span>
             
                  </div> 
                

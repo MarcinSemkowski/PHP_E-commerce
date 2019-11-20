@@ -1,5 +1,7 @@
 <?php 
-include("AbstractDatabaseConnection.php");
-include("GetFromDatabase.php");
-include("InsertToDatabase.php");
+
+include("Product.php");
+include("Customer.php");
+include("Category.php");
+include("Brand.php");
 ?>

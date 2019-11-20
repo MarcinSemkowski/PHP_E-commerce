@@ -1,8 +1,16 @@
 <!DOCTYPE>
 <?php
 session_start();
-include("../classes/includes.php");
-$getFromDatabase = new GetFromDatabase();
+include("../classes/AbstractDatabaseConnection.php");  
+include("../classes/Category.php");
+include("../classes/Brand.php");
+include("../classes/Product.php");
+include("../classes/Cart.php");
+include("../classes/Customer.php");
+
+
+$cart = new Cart();
+$customer = new Customer();
 ?>
 
 
@@ -27,7 +35,7 @@ $getFromDatabase = new GetFromDatabase();
             
             <div class="menubar">
               <ul id="menu">
-                  <li><a href="index.php" >Home</a> </li>
+                  <li><a href="../index.php" >Home</a> </li>
                    <li><a href="../all_product.php" >All Products</a> </li>
                    <li><a href="#" >Shopping Cart</a> </li>
                    <li><a href="#" >Contact Us</a> </li>
@@ -52,15 +60,31 @@ $getFromDatabase = new GetFromDatabase();
             <div id="sidebar_title">My Account</div>
             <ul id="cats">
 			       <?php
-               $user =  $_SESSION['customer_email'];
-              $getFromDatabase->getCustomerImage($user);
-                ?>
+                      if(isset($_SESSION['customer_email'])){
                 
-             <li><a href="my_account.php?my_orders">My Orders</a></li>
-                 <li><a href="my_account.php?edit_account">Edit Account</a></li>
-                 <li><a href="my_account.php?change_pass">Change Password</a></li>
-                 <li><a href="my_account.php?delete_account">Delete Account</a></li>
-              
+                    
+                
+                    $user =  $_SESSION['customer_email'];
+                  $customer->getCustomerImage($user);
+                }
+
+
+
+
+
+                ?>
+                <?php
+             
+           if(isset($_SESSION['customer_email'])){
+            echo "<li><a href='my_account.php?my_orders'>My Orders</a></li>
+                 <li><a href='my_account.php?edit_account'>Edit Account</a></li>
+                 <li><a href='my_account.php?change_pass'>Change Password</a></li>
+                 <li><a href='my_account.php?delete_account'>Delete Account</a></li>";
+              }else{
+                echo "<p style='color:white;'>Pls Sign in </p>";
+              }
+                 
+              ?>
 			</ul>
             
             </div>
@@ -70,11 +94,19 @@ $getFromDatabase = new GetFromDatabase();
             </div>
             
              <div id="content_area">
-                 <?php $getFromDatabase->cart(); ?>
+                 <?php 
+                   if(isset($_GET['add_cart'])){
+                     $id = $_GET['add_cart']; 
+                  $cart->getCart($Id); 
+                   }
+
+                  ?>
              <div id="shopping_cart">
             <span style="float:right font-size:15px; padding 5px; line-height: 40px;" >
                 
                <?php 
+
+
                    if(isset($_SESSION['customer_email'])){
                        echo"<b>Welcome</b> ".$_SESSION['customer_email'];
                    }
@@ -84,16 +116,6 @@ $getFromDatabase = new GetFromDatabase();
                 ?> 
                  
                 
-                 <?php 
-                if(!isset($_SESSION['customer_email'])){
-                    echo "<a href='checkout.php' style='color:orange'>Login</a>";
-                }else{
-                    echo "<a href='../logout.php' style='color:orange'>Logout</a>";
-                }
-                
-                
-                ?>
-                 
                  
                  </span>
                  
@@ -105,7 +127,24 @@ $getFromDatabase = new GetFromDatabase();
                  
             
         <div id="products_box">
+           
+              <?php 
+
+                 if(!isset($_SESSION['customer_email'])){
+          
+          echo "<a href='../  checkout.php' style='color:orange; font-size:50px;'>Login</a>";
+           exit();
+          }
+          else {
+          echo "<a href='logout.php' style='color:orange;'>Logout</a>";
+             exit();         
+          }
+ 
+
+
+                ?>
             
+
             <?php 
             if(!isset($_GET['my_orders'])){
                if(!isset($_GET['edit_account'])){
@@ -123,6 +162,8 @@ $getFromDatabase = new GetFromDatabase();
             }
             
             ?>
+
+                 
             
             <?php
             

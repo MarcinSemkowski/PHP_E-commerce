@@ -1,8 +1,8 @@
 <!DOCTYPE>
 <?php
 include("classes/AbstractDatabaseConnection.php");  
-include("classes/Categories.php");
-include("classes/Brands.php");
+include("classes/Category.php");
+include("classes/Brand.php");
 include("classes/Product.php");
 include("classes/Cart.php");
 
@@ -59,7 +59,7 @@ include("classes/Cart.php");
             <ul id="cats">
 			 
               <?php
-               $categories = new Categories(); 
+               $categories = new Category(); 
               $categories->getAllCatsFromDatabase();  ?>
               
 			</ul>
@@ -68,7 +68,7 @@ include("classes/Cart.php");
             <ul id="cats">
               
                <?php
-                $brands = new Brands();
+                $brands = new Brand();
                $brands->getAllBrandsFromDatabase();  ?>
                
             </ul>

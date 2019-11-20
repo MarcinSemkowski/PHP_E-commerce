@@ -2,7 +2,11 @@
 <?php
 session_start();
 
-include_once("classes/includes.php");
+include("classes/AbstractDatabaseConnection.php");  
+include("classes/Category.php");
+include("classes/Brand.php");
+include("classes/Product.php");
+include("classes/Cart.php");
 
 $cart = new Cart();
 ?>
@@ -57,7 +61,7 @@ $cart = new Cart();
             <ul id="cats">
 			  
              <?php
-             $categories = new Categories();
+             $categories = new Category();
 
              $categories->getAllCatsFromDatabase();; 
               ?>
@@ -67,8 +71,8 @@ $cart = new Cart();
                  <div id="sidebar_title">Brands</div>
             <ul id="cats">
              <?php
-              $brands = new Brands();
-              $getFromDatabase->getAllBrandsFromDatabase(); 
+              $brand = new Brand();
+              $brand->getAllBrandsFromDatabase(); 
               ?>
                
             </ul>
@@ -80,7 +84,12 @@ $cart = new Cart();
             </div>
             
              <div id="content_area">
-                 <?php $cart->getCart(); ?>
+                 <?php 
+                 if(isset($_GET['add_cart'])){
+                     $id = $_GET['add_cart']; 
+                  $cart->getCart($Id); 
+                    }
+                   ?>
              <div id="shopping_cart">
             <span style="float:right">Welcome Guest ! <b style="color:yellow">Shopping Cart -</b>Total Items:     <?php echo  $cart->totalItems(); ?> Total Price: <?php  echo  $cart->totalPrice(); ?> $ <a href="cart.php" style="color:yellow"> Go to Cart ! </a></span>
             
@@ -218,7 +227,7 @@ $customer->setEmail($c_email);
     
   
 
-   $insertToDB->insertCustomer($customer);
+   $customer->insertCustomer($customer);
     
     
 }

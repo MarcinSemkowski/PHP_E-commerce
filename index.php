@@ -3,8 +3,8 @@
 session_start();
 include("classes/AbstractDatabaseConnection.php");
 include('classes/Cart.php');
-include('classes/Categories.php');
-include('classes/Brands.php');
+include('classes/Category.php');
+include('classes/Brand.php');
 include('classes/Product.php');
 $cart = new Cart();
 ?>
@@ -59,7 +59,7 @@ $cart = new Cart();
             <ul id="cats">
 			  
              <?php 
-             $category = new Categories();
+             $category = new Category();
              $category->getAllCatsFromDatabase();  
              ?>
               
@@ -68,7 +68,7 @@ $cart = new Cart();
                  <div id="sidebar_title">Brands</div>
             <ul id="cats">
              <?php 
-              $brands = new Brands();
+              $brands = new Brand();
              $brands->getAllBrandsFromDatabase(); ?>
               
             </ul>
@@ -83,7 +83,7 @@ $cart = new Cart();
                  <?php
                     if(isset($_GET['add_cart'])){
                      $id = $_GET['add_cart']; 
-                  $cart->getCart($catId); 
+                  $cart->getCart($Id); 
                    }
                   ?>
              <div id="shopping_cart">

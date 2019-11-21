@@ -227,11 +227,7 @@ $customer->editPassword($user,$current_pass,$new_pass,$new_again);
 $user = $_SESSION['customer_email'];
 
 if(isset($_POST['yes'])){
- $delete_customer = "DELETE FROM customers WHERE customer_email= '$user'";
-  $run_customer =  mysqli_query($con,$delete_customer);
-    
-    echo "<script>alert('We are really sorry your account has been deleted !')</script>";
-   echo "<script>window.open('../index.php','_self')</script>";
+customer->deleteAccount();
 }
 
 if(isset($_POST['no'])){

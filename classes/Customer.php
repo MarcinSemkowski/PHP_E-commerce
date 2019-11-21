@@ -261,7 +261,8 @@ public  function editPassword($user,$current_pass,$new_pass,$new_again){
 
 
 public function deleteAccount(){
-   $delete_customer = "DELETE FROM customers WHERE customer_email= '$user'";
+   
+   $delete_customer = "DELETE FROM customers WHERE customer_email= '".$this->getIP()."'";
   $run_customer =  mysqli_query($con,$delete_customer);
     
     echo "<script>alert('We are really sorry your account has been deleted !')</script>";
@@ -269,6 +270,23 @@ public function deleteAccount(){
 
 
 
+}
+
+
+public function editAccount($c_name,$c__email,$c_city,$c_contact,$c_adress,$c_image,$customer_id){
+	 move_uploaded_file($c_image_tmp,"customer_images/$c_image");
+    
+     $update_c = "UPDATE customers SET customer_name='$c_name',customer_email='$c_email',customer_city='$c_city',customer_contact='$c_contact',customer_address='$c_adress', customer_image='$c_image'  WHERE customer_id='$customer_id' ";
+    
+    $run_c = mysqli_query($this->getCon(),$update_c);
+    
+    if($run_c){
+        echo "<script>alert('You update your Acount sussesfully !')</script>";
+         echo "<script>window.open('my_account.php','_self')</script>";
+    }
+        else{
+            
+        }
 }
 
 

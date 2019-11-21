@@ -81,7 +81,7 @@ $customer = new Customer();
                  <li><a href='my_account.php?change_pass'>Change Password</a></li>
                  <li><a href='my_account.php?delete_account'>Delete Account</a></li>";
               }else{
-              exit()();
+              
               }
                  
               ?>
@@ -136,6 +136,7 @@ $customer = new Customer();
            exit();
           }
           else {
+            echo "<h1>Please Sign Up !</h1>";
           echo "<a href='logout.php' style='color:orange;'>Logout</a>";
                   
           }
@@ -227,7 +228,7 @@ $customer->editPassword($user,$current_pass,$new_pass,$new_again);
 $user = $_SESSION['customer_email'];
 
 if(isset($_POST['yes'])){
-customer->deleteAccount();
+$customer->deleteAccount();
 }
 
 if(isset($_POST['no'])){
@@ -257,20 +258,10 @@ if(isset($_POST['update'])){
  @ $c_city = $_POST['c_city'];
  @ $c_contact = $_POST['c_contact']; 
  @ $c_adress = $_POST['c_adress']; 
+
+ $customer->editAccount($c_name,$c__email,$c_city,$c_contact,$c_adress,$c_image,$customer_id);
     
-    move_uploaded_file($c_image_tmp,"customer_images/$c_image");
-    
-     $update_c = "UPDATE customers SET customer_name='$c_name',customer_email='$c_email',customer_city='$c_city',customer_contact='$c_contact',customer_address='$c_adress', customer_image='$c_image'  WHERE customer_id='$customer_id' ";
-    
-    $run_c = mysqli_query($con,$update_c);
-    
-    if($run_c){
-        echo "<script>alert('You update your Acount sussesfully !')</script>";
-         echo "<script>window.open('my_account.php','_self')</script>";
-    }
-        else{
-            
-        }
+   
     }
     
     

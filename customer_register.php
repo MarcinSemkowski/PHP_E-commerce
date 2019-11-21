@@ -37,9 +37,8 @@ $cart = new Cart();
               <ul id="menu">
                   <li><a href="index.php" >Home</a> </li>
                    <li><a href="all_product.php" >All Products</a> </li>
-                   <li><a href="#" >My Account</a> </li>
-                   <li><a href="#" >Sign In</a> </li>
-                   <li><a href="#" >Shopping Cart</a> </li>
+                   <li><a href="customer/my_account.php" >My Account</a> </li>
+                   <li><a href="cart.php" >Shopping Cart</a> </li>
                    <li><a href="#" >Contact Us</a> </li>
                 
                 

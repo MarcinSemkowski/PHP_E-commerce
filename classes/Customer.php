@@ -218,7 +218,7 @@ public function loginCustomer($c_email,$c_pass){
 
 
 
-publicm function editPassword($user,$current_pass,$new_pass,$new_again){
+public  function editPassword($user,$current_pass,$new_pass,$new_again){
 
 
 

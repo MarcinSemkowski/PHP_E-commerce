@@ -37,7 +37,7 @@ $customer = new Customer();
               <ul id="menu">
                   <li><a href="../index.php" >Home</a> </li>
                    <li><a href="../all_product.php" >All Products</a> </li>
-                   <li><a href="" >Shopping Cart</a> </li>
+                   <li><a href="cart.php" >Shopping Cart</a> </li>
                    <li><a href="#" >Contact Us</a> </li>
                 
                 
@@ -81,7 +81,7 @@ $customer = new Customer();
                  <li><a href='my_account.php?change_pass'>Change Password</a></li>
                  <li><a href='my_account.php?delete_account'>Delete Account</a></li>";
               }else{
-                echo "<p style='color:white;'>Pls Sign in </p>";
+              exit()();
               }
                  
               ?>

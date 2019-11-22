@@ -45,6 +45,17 @@ public function insertProduct($product){
 }
 
 
+public function deleteProduct($product_id){
+ $deletePro = "DELETE  FROM products WHERE product_id='".$product_id."' ";
+ $runDelete = mysqli_query($this->getCon(),$deletePro);
+if($runDelete){
+  echo "<script>alert('A product has been deleted !')</script>";
+  echo "<script>window.open('index.php?view_products','_self')</script>";
+
+}
+}
+
+
 
 
 

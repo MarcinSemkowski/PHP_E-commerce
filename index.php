@@ -68,8 +68,8 @@ $cart = new Cart();
                  <div id="sidebar_title">Brands</div>
             <ul id="cats">
              <?php 
-              $brands = new Brand();
-             $brands->getAllBrandsFromDatabase(); ?>
+              $brand = new Brand();
+             $brand->getAllBrandsFromDatabase(); ?>
               
             </ul>
             

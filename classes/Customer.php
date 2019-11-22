@@ -273,6 +273,10 @@ public function deleteAccount(){
 }
 
 
+
+
+
+
 public function editAccount($c_name,$c__email,$c_city,$c_contact,$c_adress,$c_image,$customer_id){
 	 move_uploaded_file($c_image_tmp,"customer_images/$c_image");
     

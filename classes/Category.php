@@ -29,7 +29,7 @@ public function getAllCatsFromDatabase(){
 
 
 
- public function getCatsInOption(){
+ public function getAllCatsInOptionFromDatabase(){
   
                            $get_cats = "SELECT * FROM categories"; 
                         $run_cats = mysqli_query($this->getCon(),$get_cats);

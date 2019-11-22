@@ -1,10 +1,8 @@
 <!DOCTYPE>
 <?php
-include("../classes/GetFromDatabase.php");
-include("../classes/Product.php");
-$database = new GetFromDatabase();
 
-$insertToDatabase = new InsertToDatabase();
+$category = new Category();
+$brand = new Brand()
 
 ?>
 <html>
@@ -16,9 +14,9 @@ $insertToDatabase = new InsertToDatabase();
 <body bgcolor="skyblue">
     <form action="insert_product.php" method="post" enctype="multipart/form-data">
     
-    <table align="center" width="800" height="560" border="2" bgcolor="#187eae">
+    <table align="center" width="800" height="560" border="2" bgcolor="#187eae"
         
-        <tr>
+        <tr align="center">
         <td colspan="7"><h2>Insert New Post Here</h2> </td>
         </tr>
         <tr>
@@ -30,7 +28,8 @@ $insertToDatabase = new InsertToDatabase();
         <td align="center"><b>Product Category:</b></td>
             <td>       <select name="product_cat" required>
                    <option>Select Category</option>             
-                <?php $database->getCatsInOption(); ?>
+                <?php $category->getAllCatsInOptionFromDatabase(); 
+                ?>
                 </select>    
 
                 </td>
@@ -40,13 +39,12 @@ $insertToDatabase = new InsertToDatabase();
               <tr>
         <td align="center"><b>Product Brand:</b></td>
             <td>
-                  <select name="product_brand" required>
+               <select name="product_brand" required>
                    <option>Select Brand</option>             
-                <?php  $database->getBrandsInOption();   ?>
+                <?php  $brand->getAllBrandsInOptionFromDatabase();   
+                ?>
                 </select>    
-
-                  
-                  </td>
+            </td>
         </tr>
         
               <tr>
@@ -54,7 +52,7 @@ $insertToDatabase = new InsertToDatabase();
             <td><input type="file" name="product_image" required /></td>
         </tr>
         
-              <tr>
+              
         <td align="center"><b>Product Price:</b></td>
             <td><input type="text" name="product_price" required /></td>
         </tr>
@@ -111,7 +109,7 @@ $product_title = $_POST['product_title'];
     $product_image_tmp = $_FILES['product_image']['tmp_name'];
     $product->setImageTmp($product_image_tmp); 
 
-    $insertToDatabase->insertProduct($product);
+    $product->insertProduct($product);
 
 
 

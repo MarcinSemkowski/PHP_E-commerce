@@ -65,7 +65,7 @@ public function getFormCart(){
                             if(isset($_POST['qty'])){
                             	$qty = $_POST['qty'];
                                
-                             
+                             $this->totalPrice = $this->qty($qty);
 
                             }
                           

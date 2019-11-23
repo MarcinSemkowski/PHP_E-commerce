@@ -56,6 +56,20 @@ if($runDelete){
 }
 
 
+public function editProduct($editProId){
+  $getProduct = "SELECT * FROM products WHERE product_id = ".$editProId;
+  $runProducts = mysqli_query($this->getCon(),$getProduct);
+   $rowPro = mysqli_fetch_array($runProducts);
+  $this->title = $rowPro['product_title'];
+  $this->image = $rowPro['product_image'];
+  $this->price = $rowPro['product_price'];
+  $this->desc = $rowPro['product_desc'];
+  $this->keywords =  $rowPro['product_keywords'];
+  $this->cat = $rowPro['product_cat'];
+  $this->brand = $rowPro['product_brand'];
+}
+
+
 
 
 

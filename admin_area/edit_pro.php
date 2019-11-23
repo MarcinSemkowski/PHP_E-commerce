@@ -31,7 +31,7 @@ $product->editProduct($getProId);
               <tr>
         <td align="center"><b>Product Category:</b></td>
             <td>       <select name="product_cat" required>
-                   <option>Select Category</option>             
+                   <option><?php echo $product->getCat(); ?></option>             
                 <?php $category->getAllCatsInOptionFromDatabase(); 
                 ?>
                 </select>    
@@ -44,7 +44,7 @@ $product->editProduct($getProId);
         <td align="center"><b>Product Brand:</b></td>
             <td>
                <select name="product_brand" required>
-                   <option>Select Brand</option>             
+                   <option><?php echo $product->getBrand(); ?></option>             
                 <?php  $brand->getAllBrandsInOptionFromDatabase();   
                 ?>
                 </select>    
@@ -53,22 +53,22 @@ $product->editProduct($getProId);
         
               <tr>
         <td align="center"><b>Product Image:</b> </td>
-            <td><input type="file" name="product_image" required /></td>
+            <td><input type="file" name="product_image" required /><img src="product_images/<?php echo $product->getImage(); ?>" width='60' height='60' /> </td>
         </tr>
         
               
         <td align="center"><b>Product Price:</b></td>
-            <td><input type="text" name="product_price" required /></td>
+            <td><input type="text" name="product_price" value="<?php echo $product->getPrice(); ?>" required /></td>
         </tr>
         
               <tr>
         <td align="center"><b>Product Description:</b></td>
-            <td><textarea name="product_desc" cols="20" rows="10" required ></textarea></td>
+            <td><textarea name="product_desc" cols="20" rows="10" required ><?php echo $product->getDesc(); ?></textarea></td>
         </tr>
         
               <tr>
         <td align="center"><b>Product Keywords:</b></td>
-            <td><input type="text" name="product_keywords" size="50" required /></td>
+            <td><input type="text" name="product_keywords" size="50" value="<?php echo $product->getKeywords(); ?>" required /></td>
         </tr>
               <tr align="center">
             <td colspan="7"><input type="submit" name="insert_post" value="Insert Product Now " /> </td>

@@ -65,9 +65,30 @@ public function editProduct($editProId){
   $this->price = $rowPro['product_price'];
   $this->desc = $rowPro['product_desc'];
   $this->keywords =  $rowPro['product_keywords'];
-  $this->cat = $rowPro['product_cat'];
-  $this->brand = $rowPro['product_brand'];
+  $getCat = $rowPro['product_cat'];
+  $this->cat = $this->getCatById($getCat);
+  $getBrand = $rowPro['product_brand'];
+  $this->brand = $this->getBrandById($getBrand);
 }
+
+
+private function getCatById($id){
+ $catQuery = "SELECT * FROM categories WHERE cat_id = ".$id;
+  $runQueryCat = mysqli_query($this->getCon(),$catQuery);
+  $getCatRow = mysqli_fetch_array($runQueryCat);
+  $getCatTitle = $getCatRow['cat_title'];
+  return $getCatTitle; 
+}
+
+
+private function getBrandById($id){
+ $brandQuery = "SELECT * FROM brands WHERE brand_id = ".$id;
+  $runQueryBrand = mysqli_query($this->getCon(),$brandQuery);
+  $getBrandRow = mysqli_fetch_array($runQueryBrand);
+  $getBrandTitle = $getBrandRow['brand_title'];
+  return $getBrandTitle; 
+}
+
 
 
 
@@ -247,6 +268,12 @@ $run_products = mysqli_query($this->getCon(),$get_products);
     return $this->cat;
    }
 
+   public function getBrand(){
+    return $this->brand;
+   }
+
+
+
     public function  getPrice(){
     return $this->price;
    }
@@ -277,6 +304,10 @@ $run_products = mysqli_query($this->getCon(),$get_products);
    public function  setCat($cat){
      $this->cat = $cat;
    }
+      public function setBrand($brand){
+    $this->brand = $brand;
+   }
+
 
 
    public function  setPrice($price){

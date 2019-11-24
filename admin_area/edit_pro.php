@@ -1,6 +1,7 @@
 <!DOCTYPE>
 <?php
 
+
 $category = new Category();
 $brand = new Brand();
 if(isset($_GET['edit_pro'])){
@@ -16,7 +17,7 @@ $product->editProduct($getProId);
     </head>
 
 <body bgcolor="skyblue">
-    <form action="insert_product.php" method="post" enctype="multipart/form-data">
+    <form action="" method="post" enctype="multipart/form-data">
     
     <table align="center" width="800" height="560" border="2" bgcolor="#187eae"
         
@@ -71,7 +72,7 @@ $product->editProduct($getProId);
             <td><input type="text" name="product_keywords" size="50" value="<?php echo $product->getKeywords(); ?>" required /></td>
         </tr>
               <tr align="center">
-            <td colspan="7"><input type="submit" name="insert_post" value="update_product Product Now " /> </td>
+            <td colspan="7"><input type="submit" name="update_product" value=" Update  Product Now " /> </td>
         </tr>
     
         
@@ -87,33 +88,35 @@ $product->editProduct($getProId);
 <?php 
 
 if(isset($_POST['update_product'])){
-  $product = new Product();
+  $editProduct = new Product();
 
 $product_title = $_POST['product_title'];
- $product->setTitle($product_title);
+ $editProduct->setTitle($product_title);
   
   $product_cat = $_POST['product_cat'];
-  $product->setCat($product_cat); 
+  $editProduct->setCat($product_cat); 
   
    $product_brand = $_POST['product_brand'];
-   $product->setBrand($product_brand);
+   $editProduct->setBrand($product_brand);
    
    $product_price = $_POST['product_price'];
-   $product->setPrice($product_price);
+   $editProduct->setPrice($product_price);
 
     $product_desc = $_POST['product_desc'];
-    $product->setDesc($product_desc);
+    $editProduct->setDesc($product_desc);
     
     $product_keywords = $_POST['product_keywords'];
-    $product->setKeywords($product_keywords);
+    $editProduct->setKeywords($product_keywords);
     
     $product_image = $_FILES['product_image']['name'];
-    $product->setImage($product_image);
+    $editProduct->setImage($product_image);
     
     $product_image_tmp = $_FILES['product_image']['tmp_name'];
-    $product->setImageTmp($product_image_tmp); 
+    $editProduct->setImageTmp($product_image_tmp); 
 
-    $product->insertProduct($product);
+    $updateId = $getProId;
+ 
+    $editProduct->updateProduct($editProduct,$updateId);
 
 
 

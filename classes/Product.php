@@ -72,6 +72,28 @@ public function editProduct($editProId){
 }
 
 
+public function updateProduct($product,$product_id){
+    $updateProductQuery = "UPDATE products SET 
+    product_cat = '".$product->getCat()."', 
+     product_brand = '".$product->getBrand()."',    
+     product_title = '".$product->getTitle()."', 
+     product_price = '".$product->getPrice()."',
+     product_desc = '".$product->getDesc()."',
+     product_image = '".$product->getImage()."',
+     product_keywords = '".$product->getKeywords()."'
+    WHERE product_id = ".$product_id." 
+    ";
+
+  $update_pro = mysqli_query($this->getCon(),$updateProductQuery);
+
+  if($update_pro){
+     echo "<script>alert('A product has been updated ! !')</script>";
+  echo "<script>window.open('index.php?view_products','_self')</script>";
+  }
+
+}
+
+
 private function getCatById($id){
  $catQuery = "SELECT * FROM categories WHERE cat_id = ".$id;
   $runQueryCat = mysqli_query($this->getCon(),$catQuery);
@@ -319,7 +341,7 @@ $run_products = mysqli_query($this->getCon(),$get_products);
      $this->desc = $desc;
    }
 
-public function  setKeywords($keywrds){
+public function  setKeywords($keywords){
      $this->keywords = $keywords;
    }
 

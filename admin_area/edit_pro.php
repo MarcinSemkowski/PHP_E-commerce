@@ -71,7 +71,7 @@ $product->editProduct($getProId);
             <td><input type="text" name="product_keywords" size="50" value="<?php echo $product->getKeywords(); ?>" required /></td>
         </tr>
               <tr align="center">
-            <td colspan="7"><input type="submit" name="insert_post" value="Insert Product Now " /> </td>
+            <td colspan="7"><input type="submit" name="insert_post" value="update_product Product Now " /> </td>
         </tr>
     
         
@@ -86,7 +86,7 @@ $product->editProduct($getProId);
 
 <?php 
 
-if(isset($_POST['insert_post'])){
+if(isset($_POST['update_product'])){
   $product = new Product();
 
 $product_title = $_POST['product_title'];

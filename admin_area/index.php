@@ -57,6 +57,10 @@ include('../classes/Product.php');
         if(isset($_GET['edit_pro'])){
           include("edit_pro.php");
         }
+
+        if(isset($_GET['insert_category'])){
+          include("insert_category.php");
+        }
         
         
         ?>

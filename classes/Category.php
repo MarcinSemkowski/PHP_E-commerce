@@ -53,7 +53,7 @@ public function insertCategory($categoryTitle){
  $runCat = mysqli_query($this->getCon(),$insertCat);
  if($runCat){
   echo "<script>alert('New Category has been inserted !')</script>";
-  echo "<script>window.open('index.php','_self')</script>";
+  echo "<script>window.open('index.php?view_categories','_self')</script>";
  }
 }
 

@@ -62,6 +62,9 @@ include('../classes/Product.php');
           include("insert_category.php");
         }
         
+        if(isset($_GET['view_categories'])){
+            include("view_cats.php");
+        }
         
         ?>
     

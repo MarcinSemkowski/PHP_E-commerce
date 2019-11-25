@@ -3,7 +3,7 @@
 
 <b>Insert New Category: </b>
 
-<input type="text" name="new_cat"/>
+<input type="text" name="new_cat" required />
 
 
 
@@ -11,3 +11,15 @@
 
 
 </form>
+
+<?php 
+
+if(isset($_POST['add_cat'])){
+$newCat = $_POST['new_cat'];
+
+$category = new Category();
+
+$category->insertCategory($newCat);	
+}
+
+?>

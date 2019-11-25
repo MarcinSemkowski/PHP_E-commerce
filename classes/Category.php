@@ -46,6 +46,17 @@ public function getAllCatsFromDatabase(){
  }
 
 
+public function insertCategory($categoryTitle){
+ $newCat = $_POST['new_cat'];
+
+ $insertCat = "INSERT INTO categories (cat_title) VALUES ('".$categoryTitle."')  ";
+ $runCat = mysqli_query($this->getCon(),$insertCat);
+ if($runCat){
+  echo "<script>alert('New Category has been inserted !')</script>";
+  echo "<script>window.open('index.php','_self')</script>";
+ }
+}
+
 
 
 

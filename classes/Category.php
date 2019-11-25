@@ -58,6 +58,16 @@ public function insertCategory($categoryTitle){
 }
 
 
+public function deleteCategory($delete_id){
+  $deleteCategoryQuery = "DELETE FROM categories WHERE category_id = '".$delete_id."' ";
+  $runDelete = mysqli_query($this->getCon(),$deleteCategoryQuery);
+  if($runDelete){
+     echo "<script>alert(' Category has been deleted !')</script>";
+  echo "<script>window.open('index.php?view_categories','_self')</script>";
+  }
+}
+
+
 
 
 

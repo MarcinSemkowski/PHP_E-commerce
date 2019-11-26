@@ -76,6 +76,15 @@ public function editCategory($id){
   return $editCatTitle;
 }
 
+public function updateCategory($titleCat,$idCat){
+ $updateCatQuery = "UPDATE categories SET cat_title = '$titleCat' WHERE cat_id = '$idCat'";
+ $runUpdateCat = mysqli_query($this->getCon(),$updateCatQuery);
+ if($runUpdateCat){
+   echo "<script>alert(' Category has been updated !')</script>";
+  echo "<script>window.open('index.php?view_categories','_self')</script>";
+ }
+}
+
 
 
 

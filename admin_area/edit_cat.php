@@ -33,7 +33,7 @@ if(isset($_POST['update_cat'])){
 $newCat = $_POST['new_cat'];
 
 
-$category->updateCategory($newCat);	
+$category->updateCategory($newCat,$editCatId);	
 }
 
 ?>

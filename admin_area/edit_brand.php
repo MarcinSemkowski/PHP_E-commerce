@@ -18,7 +18,7 @@ if(isset($_GET['edit_brand'])){
 
 <b>Insert New Brand: </b>
 
-<input type="text" name="new_brand" value="<?php echo    $brand->editBrand($editCatId);  ?>" required />
+<input type="text" name="new_brand" value="<?php echo    $brand->editBrand($editBrandId);  ?>" required />
 
 
 

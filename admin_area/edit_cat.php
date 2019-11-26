@@ -22,7 +22,7 @@ if(isset($_GET['edit_cat'])){
 
 
 
-<input type="submit" name="update_cat" value="UpdateCategory">
+<input type="submit" name="update_cat" value="Update Category">
 
 
 </form>

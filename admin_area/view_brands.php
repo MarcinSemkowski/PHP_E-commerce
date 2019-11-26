@@ -38,7 +38,7 @@
     <td><?php echo $brand_title; ?></td>
 
     <td><a href="index.php?edit_brand=<?php echo $brand_id; ?>">Edit</a></td>
-    <td><a href="delete_pro.php?delete_brand=<?php echo $brand_id;  ?>">Delete</a></td>    
+    <td><a href="delete_brand.php?delete_brand=<?php echo $brand_id;  ?>">Delete</a></td>    
     
     </tr>
     

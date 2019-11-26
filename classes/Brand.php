@@ -46,6 +46,17 @@ public function getAllBrandsFromDatabase(){
 
 
 
+ public function insertBrands($newBrand){
+   $insertBrandQuery = "INSERT INTO brands(brand_title) VALUES ('".$newBrand."')";
+   $runBrand = mysqli_query($this->getCon(),$insertBrandQuery);
+   if($runBrand){
+    echo "<script>alert('New Brand has been inserted !')</script>";
+  echo "<script>window.open('index.php?view_brands','_self')</script>";
+   }
+ }
+
+
+
 }
 
 

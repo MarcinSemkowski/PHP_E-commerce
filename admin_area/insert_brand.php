@@ -1,9 +1,9 @@
 <form action="" method="post" align="center" style="margin: 150px;" >
 
 
-<b>Insert New Category: </b>
+<b>Insert New Brand: </b>
 
-<input type="text" name="new_cat" required />
+<input type="text" name="new_brand" required />
 
 
 
@@ -15,7 +15,7 @@
 <?php 
 
 if(isset($_POST['add_brand'])){
-$newBrand = $_POST['new_cat'];
+$newBrand = $_POST['new_brand'];
 
 $brand = new Brand();
 

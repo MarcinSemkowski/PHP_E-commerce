@@ -32,7 +32,7 @@ if(isset($_GET['edit_brand'])){
 if(isset($_POST['update_brand'])){
 $newBrand = $_POST['new_brand'];
 
-$brand->updateCategory($newBrand,$editBrandId);	
+$brand->updateBrand($newBrand,$editBrandId);	
 
 }
 

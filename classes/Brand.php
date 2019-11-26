@@ -75,6 +75,16 @@ public function updateBrand($brand_title,$brandId){
   }
 }
 
+public function deleteBrand($brandId){
+  $deletBrandQuery = "DELETE GROM brands WHERE brand_id = '$brandId'";
+  $runBrandDelete = mysqli_query($this->getCon(),$deleteBrand);
+  if($runBrandDelete){
+   echo "<script>alert(' Brand has been delete !')</script>";
+  echo "<script>window.open('index.php?view_brands','_self')</script>"; 
+  }
+
+}
+
 }
 
 

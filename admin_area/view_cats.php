@@ -7,8 +7,6 @@
     <tr align="center"bgcolor="skyblue">
     <th>S.N</th>
      <th>Title</th>
-         <th>Category ID</th>
-         <th>Categoy Title</th>
          <th>Edit</th>
         <th>Delete</th>
     

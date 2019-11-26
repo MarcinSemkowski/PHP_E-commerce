@@ -72,6 +72,10 @@ include('../classes/Product.php');
             include("insert_brand.php");
         }
         
+         if(isset($_GET['view_brands'])){
+            include("view_brands.php");
+         }
+
         ?>
     
     

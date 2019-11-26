@@ -46,7 +46,7 @@ public function getAllBrandsFromDatabase(){
 
 
 
- public function insertBrands($newBrand){
+ public function insertBrand($newBrand){
    $insertBrandQuery = "INSERT INTO brands(brand_title) VALUES ('".$newBrand."')";
    $runBrand = mysqli_query($this->getCon(),$insertBrandQuery);
    if($runBrand){

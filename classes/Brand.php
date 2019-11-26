@@ -55,7 +55,25 @@ public function getAllBrandsFromDatabase(){
    }
  }
 
+ public function editBrand($id){
+   $editBrandQuery = "SELECT * FROM brands WHERE brand_id = '".$id."'";
+    $runBrand = mysqli_query($this->getCon(),$editBrandQuery);
+     $row_brand = mysqli_fetch_array($runBrand);
+     $titleBrand = $row_brand['brand_title'];
+     return $titleBrand;   
+      }
 
+
+
+public function updateBrand($brand_title,$brandId){
+  $updateBrandQuery = "UPDATE brands SET brand_title= '$brand_title' WHERE brand_id = '$brandId' ";
+
+  $runUpdateBrand = mysqli_query($this->getCon(),$updateBrandQuery);
+  if($runUpdateBrand){
+      echo "<script>alert(' Brand has been update !')</script>";
+  echo "<script>window.open('index.php?view_brands','_self')</script>";
+  }
+}
 
 }
 

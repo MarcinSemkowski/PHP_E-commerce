@@ -75,6 +75,9 @@ include('../classes/Product.php');
          if(isset($_GET['view_brands'])){
             include("view_brands.php");
          }
+         if(isset($_GET['edit_brand'])){
+            include("edit_brand.php");
+         }
 
         ?>
     

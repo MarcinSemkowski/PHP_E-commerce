@@ -41,7 +41,7 @@
     <td><?php echo $customer_name; ?></td>
     <td><?php echo $customer_email; ?></td>
     <td><img src="../customer/customer_images/<?php echo $customer_image; ?>" width="60" height="60"></td>
-    <td><a href="delete_brand.php?delete_brand=<?php echo $brand_id;  ?>">Delete</a></td>    
+    <td><a href="delete_customer.php?delete_customer=<?php echo $customer_id;  ?>">Delete</a></td>    
     
     </tr>
     

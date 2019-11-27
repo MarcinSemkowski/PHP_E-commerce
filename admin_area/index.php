@@ -1,9 +1,16 @@
 <?php 
+session_start();
+
 include("../classes/AbstractDatabaseConnection.php");
 include('../classes/Cart.php');
 include('../classes/Category.php');
 include('../classes/Brand.php');
 include('../classes/Product.php');
+
+if(!isset($_SESSION['user_email'])){
+  echo "<script>window.open('login.php?not_admin=You are not Admin !','_self')</script>";
+}else{
+
 
 
 ?>
@@ -92,3 +99,7 @@ include('../classes/Product.php');
     </body>
 
 </html>
+
+<?php 
+}
+?>

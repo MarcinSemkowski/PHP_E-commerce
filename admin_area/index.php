@@ -35,7 +35,7 @@ include('../classes/Product.php');
         <a href="index.php?insert_brand">Insert Brand</a>
         <a href="index.php?view_brands">View All Brands </a>
         <a href="index.php?view_orders">View Orders</a>
-        <a href="index.php?insert_product">View All Customers</a>
+        <a href="index.php?view_customers">View All Customers</a>
         <a href="index.php?view_payments">View Payments</a>
         <a href="logout.php">Admin Logout</a>
         
@@ -77,6 +77,9 @@ include('../classes/Product.php');
          }
          if(isset($_GET['edit_brand'])){
             include("edit_brand.php");
+         }
+         if(isset($_GET['view_customers'])){
+            include("view_customers.php");
          }
 
         ?>

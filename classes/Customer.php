@@ -272,6 +272,15 @@ public function deleteAccount(){
 
 }
 
+public function deleteCustomer($id){
+  $delete_customer = "DELETE FROM customer WHERE customer_id = '".$id."'";
+  $run_delete = mysqli_query($this->getCon(),$delete_customer);
+ if ($run_delete) {
+     echo "<script>alert('Custhomer has been deleted ! !')</script>";
+   echo "<script>window.open('index.php?view_customers.php','_self')</script>";
+ }
+}
+
 
 
 

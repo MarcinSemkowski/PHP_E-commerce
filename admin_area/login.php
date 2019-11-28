@@ -15,7 +15,7 @@ include('../classes/Admin.php');
 <link rel="stylesheet" type="text/css" href="styles/login_style.css">
 </head>
 
-
+<body>
 
 
 <div class="login">
@@ -27,6 +27,9 @@ include('../classes/Admin.php');
         <input type="submit" class="btn btn-primary btn-block btn-large" name="login" value="Login">
     </form>
 </div>
+
+</body>
+
 <?php
 
 if(isset($_POST['login'])){

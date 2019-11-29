@@ -1,4 +1,5 @@
 <?php 
+session_start();
 include("../classes/AbstractDatabaseConnection.php");
 include('../classes/Cart.php');
 include('../classes/Category.php');
@@ -19,7 +20,7 @@ include('../classes/Admin.php');
 
 
 <div class="login">
-	
+	<h2 style="color:white; text-align:center;"><?php echo @$_GET['not_admin']; ?></h2>
 	<h1> Admin Login</h1>
     <form method="post" action="">
     	<input type="text" name="email" placeholder="Email" required="required" />
@@ -33,7 +34,7 @@ include('../classes/Admin.php');
 <?php
 
 if(isset($_POST['login'])){
- $email =  $_POST['email'];
+ $email = $_POST['email'];
  $pass = $_POST['password'];
  $admin  = new Admin();
   $admin->login($email,$pass);

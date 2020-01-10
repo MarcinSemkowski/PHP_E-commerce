@@ -60,7 +60,7 @@ public function setCity($city){
   $this->city = $city;
 }
 
-public function setContact($contact){
+public function setContact( String $contact) : String{
   $this->contact = $contact;
 }
 

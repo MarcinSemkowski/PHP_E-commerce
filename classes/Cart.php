@@ -205,7 +205,7 @@ public  function totalItems(){
           while ($fetchCart = mysqli_fetch_array($run_items)) {
              
              $qtyCartItem = $fetchCart['qty'];
-            $itemNum += $qtyCarItem;
+            $itemNum += $qtyCartItem;
           }
 
         } else{

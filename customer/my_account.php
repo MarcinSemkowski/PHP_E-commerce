@@ -35,12 +35,19 @@ $customer = new Customer();
             
             <div class="menubar">
               <ul id="menu">
+                  <?php  if(isset($_SESSION['customer_email'])){ ?>
                   <li><a href="../index.php" >Home</a> </li>
                    <li><a href="../all_product.php" >All Products</a> </li>
                    <li><a href="cart.php" >Shopping Cart</a> </li>
                    <li><a href="#" >Contact Us</a> </li>
                 
-                
+                <?php } 
+                  else{
+                ?>
+                     <li><a href="../index.php" >Home</a> </li>
+                   <li><a href="../all_product.php" >All Products</a> </li>
+                   <li><a href="#" >Contact Us</a> </li>
+            <?php } ?>
                 </ul>
             
                 <div id="form">
@@ -61,11 +68,8 @@ $customer = new Customer();
             <ul id="cats">
 			       <?php
                       if(isset($_SESSION['customer_email'])){
-                
-                    
-                
-                    $user =  $_SESSION['customer_email'];
-                  $customer->getCustomerImage($user);
+                      $user =  $_SESSION['customer_email'];
+                     $customer->getCustomerImage($user);
                 }
 
 

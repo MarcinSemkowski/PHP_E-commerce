@@ -106,7 +106,7 @@ public function getFormCart(){
 
 public function removeFromCart(){
 	       $ip = $this->getIP();
-            if(isset($_POST['update_cart'])){
+            
                 if(isset($_POST['remove'])){
                 foreach($_POST['remove'] as $remove_id){
                  $delete_product = "DELETE FROM cart WHERE p_id = '$remove_id' AND ip_add = '$ip'  ";     
@@ -117,20 +117,20 @@ public function removeFromCart(){
                     }
                 }
             }
-            }
+            
 }
 
 
 
 
-private function qty($qty){
+private function qty(  $qty)  {
     
                             
 $update_qty = "UPDATE cart set qty = '$qty'";
 $run_qty = mysqli_query($this->getCon(),$update_qty);
  $_SESSION['qty'] = $qty;
-                                
-return   $this->totalPrice * $qty; 
+      @ $returnValue = $this->totalPrice * $qty;                       
+return  $returnValue;  
 }
 
 

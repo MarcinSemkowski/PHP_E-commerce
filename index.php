@@ -83,7 +83,7 @@ $cart = new Cart();
                  <?php
                     if(isset($_GET['add_cart'])){
                      $id = $_GET['add_cart']; 
-                  $cart->getCart($Id); 
+                  $cart->getCart($id); 
                    }
                   ?>
              <div id="shopping_cart">

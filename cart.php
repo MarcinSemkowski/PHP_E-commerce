@@ -133,8 +133,13 @@ $cart = new Cart();
         <div id="products_box">
             <?php
             $cart->getFormCart();
+             if(isset($_POST['update_cart'])){
+              $cart->removeFromCart();
+             }
              ?>         
-            
+              
+
+
             <?php 
               
          
